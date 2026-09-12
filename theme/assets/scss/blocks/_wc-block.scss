@@ -1,0 +1,94 @@
+@use "../helpers" as *;
+@use "../blocks/button" as *;
+
+
+a.added_to_cart.wc-forward {
+    display: none;
+}
+
+// Cart
+.wc-block-cart__main {
+    .wc-block-cart-items {
+        th {
+            font-size: rem(18);
+        }
+    }
+    
+    .wc-block-cart-item__image img {
+        overflow: hidden;
+        border: var(--st-border);
+        border-radius: var(--st-border-radius-3);
+    }
+}
+
+.wc-block-components-product-metadata__description {
+    display: none;
+}
+
+.wc-block-components-button {
+    @include button;
+}
+
+// Checkout
+
+.wc-block-checkout__shipping-method-option.wc-block-checkout__shipping-method-option--selected {
+    border: none;
+}
+
+.wc-block-components-radio-control__option,
+.wc-block-components-radio-control-accordion-option {
+    border: var(--st-border);
+    border-radius: 4px;
+}
+
+.wc-block-components-radio-control--highlight-checked {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    label.wc-block-components-radio-control__option--checked-option-highlighted,
+    .wc-block-components-radio-control-accordion-option--checked-option-highlighted {
+        box-shadow: 0 0 0 0.125rem var(--st-c-accent-2);
+        border: var(--st-border-3);
+    }
+
+    &:after {
+        content: none !important;
+    }
+}
+
+.wc-block-components-address-form__country {
+    margin-top: 12px !important;
+}
+
+.wc-block-components-text-input input, .wc-blocks-components-select__select {
+    border: var(--st-border) !important;
+
+    &:focus-visible {
+        outline: var(--st-c-accent) auto 1px;
+        border-color: var(--st-c-accent);
+        box-shadow: 0 0 0 0.125rem var(--st-c-accent-2);
+    }
+}
+
+.wc-block-components-address-form__address_2-toggle {
+    color: var(--st-c-accent);
+}
+
+.wc-block-components-checkbox__mark {
+    fill: var(--st-c-accent) !important;
+}
+
+.wc-block-components-radio-control .wc-block-components-radio-control__input:checked:before {
+    background: var(--st-c-accent);
+}
+
+.wc-block-components-textarea {
+    border: var(--st-border);
+
+    &:focus {
+        outline: var(--st-c-accent) auto 1px;
+        border-color: var(--st-c-accent);
+        box-shadow: 0 0 0 0.125rem var(--st-c-accent-2);
+    }
+}

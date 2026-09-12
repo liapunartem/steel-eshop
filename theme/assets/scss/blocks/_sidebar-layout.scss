@@ -1,0 +1,43 @@
+@use "../helpers" as *;
+
+.sidebar-layout {
+    display: grid;
+    grid-template-columns: var(--st-sidebar-width) minmax(0, 1fr);
+    gap: var(--st-container-padding-x);
+    transition: grid-template-columns var(--st-transition-duration);
+
+    &__sidebar {
+        position: sticky;
+        z-index: 10;
+        height: fit-content;
+        top: calc(var(--st-top-header-position) + calc(var(--st-container-padding-x)  + 130px));
+        padding-bottom: rem(15);
+        transition:
+            transform var(--st-transition-duration),
+            opacity var(--st-transition-duration),
+            top var(--st-transition-duration-2)
+        ;
+    }
+
+    &.sidebar-hidden {
+        grid-template-columns: 0 100%;
+        gap: 0;
+
+        .sidebar-layout__sidebar {
+            transform: translateX(-200%);
+            @include hide;
+        }
+    }
+
+    @include tablet {
+        display: block;
+        .sidebar-layout__sidebar {
+            padding: 0;
+            position: static;
+        }
+    }
+
+    .front-page & {
+        margin-top: var(--st-container-padding-x);
+    }
+}

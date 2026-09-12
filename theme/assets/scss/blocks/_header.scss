@@ -1,0 +1,143 @@
+@use "../helpers" as *;
+@use "button" as *;
+
+.header {
+    position: sticky;
+    
+    z-index: 20;
+    color: var(--st-c-light);
+    font-size: rem(16);
+    
+    
+    top: var(--st-top-header-position);
+    transition: top var(--st-transition-duration-2);
+    
+    &__inner {
+        @include flex-between;
+        
+        width: 100%;
+        gap: rem(40);
+
+        @include mobile {
+            gap: 0;
+        }
+    }
+
+    &__top {
+        display: flex;
+        height: rem(70);
+        background: var(--st-c-dark);
+    }
+
+    &__bottom {
+        display: flex;
+        height: rem(60);
+        background: var(--st-c-accent);
+        box-shadow: var(--st-shadow);
+    }
+
+    &__logo img {
+        height: rem(40);
+        width: auto;
+    }
+}
+
+.header__menu {
+    display: flex;
+    gap: rem(100);
+
+    .menu__item{
+        @include hover {
+            color: var(--st-c-accent);
+        }
+
+        &.is-current {
+            color: var(--st-c-accent);
+            pointer-events: none;
+        }
+    }
+
+}
+
+.header__account {
+    color: var(--st-c-accent);
+}
+
+.header__categories {
+    position: relative;
+
+    &-button {
+        @include button;
+
+        font-size: inherit;
+        white-space: nowrap;
+        justify-content: space-between;
+        padding-inline: rem(20);
+        width: var(--st-sidebar-width);
+        gap: rem(10);
+        background: var(--st-c-accent-2);
+        border-radius: rem(10);
+        
+        &-title {
+            @include flex-center;
+            gap: rem(10);
+        }
+
+        @include hover {
+            color: var(--st-c-light);
+            background: var(--st-c-accent-3);
+        }
+    }
+
+    &-body {
+        @include hide;
+
+        position: absolute;
+        top: rem(40);
+        z-index: 100;
+        width: var(--st-sidebar-width);
+        color: var(--st-c-dark);
+        transition: opacity var(--st-transition-duration);
+
+        &.is-open {
+            @include show;
+
+            .dropdown-categories {
+                box-shadow: var(--st-shadow);
+            }
+        }
+    }
+}
+
+.header__nav-buttons {
+    display: flex;
+    gap: rem(24);
+
+    @include mobile {
+        gap: rem(10);
+    }
+
+    .header__nav-btn {
+        width: rem(40);
+        height: rem(40);
+        color: inherit;
+        background: transparent;
+        padding: 0;
+        position: relative;
+        
+        &-count {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+    
+            width: rem(15);
+            height: rem(15);
+    
+            font-size: rem(10);
+    
+            border-radius: 100%;
+            background: red;
+        }
+    }
+
+}

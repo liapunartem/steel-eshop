@@ -1,0 +1,22 @@
+@use "helpers" as *;
+
+.material-symbols {
+    font-family: "Material Symbols Rounded";
+    font-weight: normal;
+    font-style: normal;
+    font-size: rem(24);
+    line-height: 1;
+    user-select: none;
+    
+    @include flex-center;
+
+    font-variation-settings: 
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    
+    &--filled {
+        font-variation-settings: "FILL" 1;
+    }
+}

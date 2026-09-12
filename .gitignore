@@ -1,0 +1,8 @@
+.agents/
+plugins/
+uploads/
+wordpress-core/
+
+/backup.sql
+/notes.txt
+/wp-config.php

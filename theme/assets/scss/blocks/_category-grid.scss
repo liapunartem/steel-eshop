@@ -1,0 +1,26 @@
+@use "../helpers" as *;
+
+.category-grid {
+    --itemMinWidth: #{rem(260)};
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--itemMinWidth), 1fr));
+    gap: rem(40);
+
+    @include tablet {
+        gap: rem(25);
+    }
+
+    @include mobile {
+        grid-template-columns: 1fr 1fr;
+        gap: rem(10);
+    }
+
+    &--front-page {
+        @include mobile-above {
+            .sidebar-hidden & {
+                --itemMinWidth: #{rem(300)};
+            }
+        }
+    }
+}

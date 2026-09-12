@@ -1,0 +1,38 @@
+@use "helpers" as *;
+
+:root {
+	--st-c-dark: #303030;
+	--st-c-dark-2: #242222;
+	--st-c-light: #FFFFFF;
+	--st-c-light-translucent: #FFFFFFF5;
+	--st-c-accent: #11A2BD;
+	--st-c-accent-2: #90c7d260;
+	--st-c-accent-3: #B0D1D7CC;
+	--st-c-gray: #e1dde7;// #9090909c;//#909090;
+	--st-c-gray-2: #70868C;
+	--st-c-gray-light: #f5f5f5;
+	--st-c-red: #ee1c008e;
+	--st-c-backdrop: #00000080;
+
+	--st-border: #{rem(1)} solid var(--st-c-gray);// #0000003D;
+	--st-border-2: #{rem(1)} solid #B5CCD1;
+	--st-border-3: #{rem(1)} solid var(--st-c-accent);
+
+	--st-border-radius: #{rem(10)};
+	--st-border-radius-2: #{rem(8)};
+	--st-border-radius-3: #{rem(6)};
+
+	--st-shadow: #{rem(3)} #{rem(3)} #{rem(6)} 0 #00000040;
+	--st-shadow-inset-x: inset #{rem(3)} #{rem(3)} #{rem(6)} 0 #00000040;
+
+	--st-font-family-base: "Roboto", sans-serif;
+	
+	--st-sidebar-width: #{rem(300)};
+
+	--st-container-width: 1440px;
+	--st-container-padding-x: 40px;
+
+	--st-transition-duration: 0.2s;
+	--st-transition-duration-2: 0.3s;
+	--st-top-header-position: 0rem;
+}

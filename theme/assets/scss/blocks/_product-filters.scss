@@ -1,0 +1,115 @@
+@use "../helpers" as *;
+
+.product-filters {
+    @include tablet-above {
+        pointer-events: all;
+    }
+    
+    .offcanvas__backdrop {
+        @include tablet-above {
+            display: none;
+        }
+    }
+
+    &__body {
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+
+        max-height: 100dvh;
+        background: var(--st-c-light);
+
+        @include hover {
+            scrollbar-color: var(--st-c-gray) transparent;
+        }
+        
+        @include tablet-above {
+            position: relative;
+            width: 100% !important;
+            transform: none !important;
+            max-height: calc(
+                100dvh - calc(var(--st-container-padding-x) + 165px) 
+                - var(--st-top-header-position)
+            ) !important;
+            transition: max-height var(--st-transition-duration-2);
+
+            .product-filters__main {
+                padding: 0 rem(5);
+            }
+        }
+    }
+
+    .wpc-filters-section {
+        margin: 0;
+    }
+
+    .wpc-filters-widget-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: rem(30);
+    }
+
+    .wpc-instead-of-posts-found {
+        display: none;
+    }
+
+    .wpc-filter-title {
+        @include fluid-text(16, 20);
+    }
+
+    .wpc-filters-widget-content input[type=number] {
+        padding-block: 0;
+        border: var(--st-border-2);
+        border-radius: var(--st-border-radius-2);
+
+        &:focus-visible {
+            outline: none;
+            border: var(--st-border-3);
+        }
+    }
+
+    .wpc-filters-range-inputs .ui-slider-horizontal .ui-slider-range {
+        background: var(--st-c-accent);
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        width: 23px;
+        height: 23px;
+        border: var(--st-border-2);
+        border-radius: var(--st-border-radius-3);
+        position: relative;
+
+        &:checked::after {
+            content: '✔';
+            font-size: 14px;
+            color: var(--st-c-accent);
+            @include abs-center;
+        }
+
+        &:checked{
+            background: var(--st-c-light);
+        }
+    }
+
+    .wpc-custom-selected-terms ul.wpc-filter-chips-list {
+        display: block !important;
+
+        .wpc-filter-chip {
+            margin-bottom: rem(10);
+
+            a {
+                border-color: var(--st-c-accent);
+            }
+
+            &.wpc-chip-reset-all a {
+                border-color: var(--st-c-red);
+            }
+        }
+    }
+
+    .wpc-term-count-0 {
+        pointer-events: none;
+    }
+}
+

@@ -1,0 +1,113 @@
+@use "../helpers" as *;
+
+.modal {
+	pointer-events: none;
+
+	&__backdrop {
+		@include hide;
+
+		position: fixed;
+		inset: 0;
+		z-index: 100;
+		width: 100dvw;
+		height: 100dvh;
+		background: var(--st-c-backdrop);
+		transition: opacity var(--st-transition-duration);
+	}
+
+	&__body {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		z-index: 200;
+		width: min(rem(450), calc(100dvw - rem(30)));
+		max-height: calc(100dvh - rem(30));
+		overflow: auto;
+		background: var(--st-c-light);
+		transform: translate(-50%, -50%) scale(0.95);
+		opacity: 0;
+		transition:
+			transform var(--st-transition-duration),
+			opacity var(--st-transition-duration);
+		
+		border-radius: var(--st-border-radius);
+	}
+
+	&__header {
+		@include flex-between;
+
+		position: sticky;
+		top: 0;
+		z-index: 5;
+		height: rem(70);
+		padding-inline: rem(15);
+		background: var(--st-c-dark);
+	}
+
+	&__title {
+		color: var(--st-c-light);
+		font-size: rem(25);
+		display: inline-flex;
+    	gap: 5px;
+
+		.material-symbols {
+			font-size: rem(30);
+		}
+	}
+
+	&__main {
+		padding: rem(15);
+	}
+
+	&__close-btn {
+		width: rem(40);
+		height: rem(40);
+		color: var(--st-c-light);
+		background: transparent;
+
+		.material-symbols {
+			font-size: rem(30);
+		}
+	}
+
+	&.is-open {
+		pointer-events: all;
+
+		.modal__body {
+			transform: translate(-50%, -50%) scale(1);
+			opacity: 1;
+		}
+
+		.modal__backdrop {
+			@include show;
+		}
+	}
+
+	&--offcanvas {
+		.modal__body {
+			top: 0;
+			right: 0;
+			left: auto;
+			width: rem(350);
+			height: 100dvh;
+			max-height: none;
+			transform: translateX(100%);
+			opacity: 1;
+			transition: transform var(--st-transition-duration);
+
+			border-radius: 0;
+		}
+
+		&.is-open {
+			.modal__body {
+				transform: translateX(0);
+			}
+		}
+
+		@include mobile-s {
+			.modal__body {
+				width: 100dvw;
+			}
+		}
+	}
+}

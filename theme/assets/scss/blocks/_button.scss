@@ -1,0 +1,99 @@
+@use "../helpers" as *;
+
+@mixin button {
+	@include flex-center(true);
+    
+	min-width: fluid(35, 40);
+    padding-inline: rem(15);
+    padding-block: rem(10);
+    font-size: fluid(14, 18);
+    font-weight: 400;
+    line-height: 1;
+    border: var(--st-border-3);
+    border-radius: var(--st-border-radius-3);
+    
+    color: var(--st-c-light);
+    background: var(--st-c-accent);
+    transition: all var(--st-transition-duration);
+	cursor: pointer;
+
+    @include hover {
+        color: var(--st-c-accent);
+        background: var(--st-c-light);
+    }
+
+    &--transparent  {
+        color: var(--st-c-accent);
+        background: transparent;
+
+        @include hover {
+            color: var(--st-c-light);
+            background: var(--st-c-accent);
+        }
+    }
+
+	&--rounded {
+		border-radius: rem(30);
+	}
+
+	&--dynamic {
+		position: relative;
+		overflow: hidden;
+
+		&::before {
+			content: "";
+			position: absolute;
+			left: -50px;
+			top: 0;
+			width: 0;
+			height: 100%;
+			background: var(--st-c-accent-2);
+			transform: skewX(45deg);
+			z-index: 1;
+			transition: width 1000ms;
+		}
+
+		& * {
+			z-index: 2;
+		}
+
+		@include hover {
+			color: var(--st-c-accent);
+			background: none;
+
+			&::before {
+				width: 150%;
+			}
+		}
+	}
+
+    &.loading,
+    &.is-loading {
+        position: relative;
+        pointer-events: none;
+        opacity: 0.7;
+
+        &::after {
+            content: "";
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            margin-left: rem(8);
+            border: 2px solid currentColor;
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: button-loader-spin 0.6s linear infinite;
+            vertical-align: middle;
+        }
+    }
+}
+
+.button {
+	@include button;
+}
+
+@keyframes button-loader-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

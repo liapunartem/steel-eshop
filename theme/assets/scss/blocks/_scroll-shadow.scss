@@ -1,0 +1,37 @@
+.scroll-shadow {
+    position: relative;
+    overflow: hidden;
+
+    [data-check-scroll="horizontal"] {
+        display: flex;
+        white-space: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    &__left,
+    &__right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 20px;
+        z-index: 1;
+        pointer-events: none;
+        transition: opacity var(--st-transition-duration);
+        opacity: 0;
+
+        &.is-visible {
+            opacity: 1;
+        }
+    }
+
+    &__left {
+        left: 0;
+        background: linear-gradient(to right, rgba(0,0,0,0.05), transparent);
+    }
+
+    &__right {
+        right: 0;
+        background: linear-gradient(to left, rgba(0,0,0,0.05), transparent);
+    }    
+}

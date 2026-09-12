@@ -1,0 +1,41 @@
+@forward "./normalize";
+@forward "./fonts";
+@forward "./variables";
+@forward "./utils";
+@forward "./globals";
+
+@forward "./blocks/button";
+@forward "./blocks/header";
+@forward "./blocks/footer";
+@forward "./blocks/section";
+@forward "./blocks/sidebar-layout";
+
+@forward "./blocks/scroll-shadow";
+@forward "./blocks/modal";
+@forward "./blocks/dropdown-categories";
+@forward "./blocks/swiper";
+@forward "./blocks/hero";
+
+@forward "./blocks/category-grid";
+@forward "./blocks/category-card";
+
+@forward "./blocks/breadcrumb";
+@forward "./blocks/ordering";
+@forward "./blocks/pagination";
+@forward "./blocks/aws-search";
+
+@forward "./blocks/products";
+@forward "./blocks/quantity";
+@forward "./blocks/product-card";
+@forward "./blocks/product-filters";
+@forward "./blocks/product";
+@forward "./blocks/product-gallery";
+@forward "./blocks/product-summary";
+@forward "./blocks/reviews";
+@forward "./blocks/tabs";
+@forward "./blocks/form";
+@forward "./blocks/loader";
+@forward "./blocks/mini-cart";
+@forward "./blocks/wc-block";
+@forward "./blocks/notices";
+@forward "./blocks/wishlist";

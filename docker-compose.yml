@@ -1,0 +1,53 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: steel-mysql
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: wp_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    container_name: steel-wp
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_NAME: wp_db
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: pass
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-config.php:/var/www/html/wp-config.php
+      - ./theme:/var/www/html/wp-content/themes/steel-eshop
+      - ./plugins:/var/www/html/wp-content/plugins
+      - ./uploads:/var/www/html/wp-content/uploads
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: steel-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8181:80"
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: pass
+
+
+volumes:
+  db_data:
+  wordpress_data:

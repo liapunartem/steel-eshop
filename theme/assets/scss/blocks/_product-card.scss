@@ -1,0 +1,82 @@
+@use "../helpers" as *;
+
+
+.product-card {
+    position: relative;
+    border: var(--st-border);
+    border-radius: var(--st-border-radius);
+    overflow: hidden;
+    padding: 0;
+    
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        &-link {
+            display: block;
+        }
+    }
+
+    &__body {
+        padding: rem(15);
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__wishlist-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: rem(15);
+        color: var(--st-c-accent);
+        background: transparent;
+
+        &.is-active .material-symbols {
+            font-variation-settings: "FILL" 1;
+        }
+    }
+
+    &__title {
+        @include fluid-text(14, 18);
+
+        min-height: fluid(34, 44);
+        line-height: 1.2;
+        margin-bottom: rem(15);
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &__price {
+        margin-bottom: rem(10);
+        
+        .price {
+            @include fluid-text(14, 18);
+
+            display: flex;
+            gap: rem(10);
+            color: var(--st-c-accent);
+        }
+        
+
+        del, ins {
+            white-space: nowrap;
+        }
+
+        del {
+            @include fluid-text(12, 16);
+
+            color: var(--st-c-gray);
+        }
+    }
+
+    &__rating {
+        display: flex;
+        align-items: center;
+        color: var(--st-c-accent);
+    }
+}

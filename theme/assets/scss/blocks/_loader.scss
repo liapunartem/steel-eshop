@@ -1,0 +1,25 @@
+@use "../helpers" as *;
+
+.loader {
+    
+    &.is-loading {
+        @include flex-center;
+        min-height: rem(80);
+
+        &::after {
+            content: '';
+            width: rem(30);
+            height: rem(30);
+            border: 3px solid var(--st-c-accent);
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: loader-spin 0.7s linear infinite;
+        }
+    }
+}
+
+@keyframes loader-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

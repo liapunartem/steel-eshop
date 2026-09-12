@@ -1,0 +1,29 @@
+@use "../helpers" as *;
+
+.section {
+    &__header {
+        @include flex-between;
+        
+        margin-top: rem(40);
+
+        @include mobile {
+            margin-top: rem(16);
+        }
+    }
+    
+    &__footer {
+        @include flex-center;
+
+        margin-top: rem(40);
+
+        @include mobile {
+            margin-top: rem(16);
+        }
+
+        a {
+            display: inline-flex;
+            text-decoration: none;
+            color: var(--st-c-accent);
+        }
+    }
+}

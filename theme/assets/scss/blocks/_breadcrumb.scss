@@ -1,0 +1,39 @@
+@use "../helpers" as *;
+
+.breadcrumb {
+    @include fluid-text(14, 16);
+    
+    overflow: hidden;
+    position: relative;
+    margin-top: rem(18);
+    margin-bottom: rem(30);
+
+    &__list {
+        display: flex;
+        white-space: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        list-style: none;
+        gap: rem(10);
+
+        & li:before {
+            content: '/';
+            padding-right: rem(10);
+            color: var(--st-c-gray);
+        }
+        
+        > li:first-child {
+            color: var(--st-c-accent);
+
+            &:before {
+                content: '';
+            }
+        }
+
+        > li:last-child {
+            color: var(--st-c-gray);
+        }
+    }
+
+    
+}

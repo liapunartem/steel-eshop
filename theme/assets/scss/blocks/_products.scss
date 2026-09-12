@@ -1,0 +1,65 @@
+@use "../helpers" as *;
+
+.products {
+    &__title {
+        margin: 0;
+    }
+
+    &__ordering-wrap {
+        display: flex;
+        align-items: center;
+        height: rem(60);
+        background: var(--st-c-light-translucent);
+        gap: rem(10);
+
+        @include tablet {
+            position: sticky;
+
+            top: calc(rem(130) + var(--st-top-header-position));
+            transition: top var(--st-transition-duration-2);
+
+            z-index: 10;
+            margin-inline: calc(var(--st-container-padding-x) * -1);
+            padding-inline: var(--st-container-padding-x);
+        }
+    }
+    
+    &__filters-button {
+        padding: fluid(5, 7);
+    }
+
+    &__grid {
+        --itemMinWidth: #{rem(250)};
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(var(--itemMinWidth), 1fr));
+        gap: rem(5);
+        margin-top: rem(10);
+
+        @include mobile {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include mobile-s {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: var(--st-container-padding-x);
+
+        .material-symbols {
+            color: var(--st-c-red);
+            font-size: rem(40);
+        }
+    }
+
+    &__footer {
+        padding-top: rem(40);
+    }
+}

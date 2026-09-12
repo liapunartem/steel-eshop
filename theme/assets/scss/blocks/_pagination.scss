@@ -1,0 +1,17 @@
+@use "../helpers" as *;
+
+.pagination {
+    @include flex-center;
+    align-items: center;
+    position: relative;
+
+    gap: rem(10);
+
+    &__list {
+        gap: rem(10);
+    }
+
+    &__link.is-current {
+        pointer-events: none;
+    } 
+}

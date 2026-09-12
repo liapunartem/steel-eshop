@@ -1,0 +1,45 @@
+@use "../helpers" as *;
+
+
+.quantity {
+    display: inline-flex;
+    border: 1px solid var(--st-c-accent);
+    border-radius: var(--st-border-radius-3);
+    height: rem(25);
+
+    input {
+        text-align: center;
+        height: auto;
+        width: rem(30);
+
+        &:focus {
+            outline: none;
+            box-shadow: inset 0 0 1px 1px var(--st-c-accent);
+        }
+
+        appearance: textfield;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            appearance: none;
+            margin: 0;
+        }
+    }
+
+    &__button {
+        color: var(--st-c-accent);
+        background: transparent;
+        width: rem(25);
+
+        @include flex-center;
+
+
+        transition: all var(--st-transition-duration);
+
+        &:hover {
+            color: var(--st-c-light);
+            background: var(--st-c-accent);
+        }
+        
+    }
+}

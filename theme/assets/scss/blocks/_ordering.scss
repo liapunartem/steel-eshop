@@ -1,0 +1,38 @@
+@use "../helpers" as *;
+@use "button" as *;
+
+.ordering {
+    @include fluid-text(14, 16);
+
+    &__list {
+        gap: rem(20);
+
+        @include tablet {
+            gap: rem(10);
+        }
+    }
+
+    &__button {
+        @include tablet {
+            &.is-current {
+                color: var(--st-c-light);
+                background: var(--st-c-accent);
+            }
+        }
+        
+
+        @include tablet-above {
+            all: unset;
+            cursor: pointer;
+
+            @include hover {
+                background: unset;
+                color: var(--st-c-accent);
+            }
+
+            &.is-current {
+                color: var(--st-c-accent);
+            }
+        }
+    }
+}
