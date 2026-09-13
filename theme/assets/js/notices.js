@@ -84,6 +84,20 @@ function initNotices() {
     }
 
     function initAllNotices() {
+        let wrapper = document.querySelector('.woocommerce-notices-wrapper');
+        if (!wrapper) {
+            wrapper = document.createElement('div');
+            wrapper.className = 'woocommerce-notices-wrapper';
+            document.body.appendChild(wrapper);
+        }
+
+        // Relocate any inline notices rendered outside the fixed notices wrapper
+        const orphanNotices = document.querySelectorAll('.notices:not(.woocommerce-notices-wrapper .notices)');
+        orphanNotices.forEach((notice) => {
+            wrapper.appendChild(notice);
+            initNoticeElement(notice);
+        });
+
         const notices = document.querySelectorAll('.notices:not([data-notice-init]), .woocommerce-notices-wrapper li:not([data-notice-init])');
         notices.forEach(initNoticeElement);
     }

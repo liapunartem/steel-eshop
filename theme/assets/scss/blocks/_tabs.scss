@@ -70,20 +70,3 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-.login-tabs {
-    @include flex-center;
-    
-    flex-direction: column;
-
-    &__list {
-        position: static;
-    }
-
-    &__list, &__content, .woocommerce-notices-wrapper {
-        width: rem(500);
-        
-        @include mobile {
-            width: 100%;
-        }
-    }
-}

@@ -95,3 +95,30 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScrollY = currentScrollY;
     }, { passive: true });
 });
+
+/**
+ * Auto-scroll active item into view in account navigation on mobile / tablet
+ */
+const initAccountNavScroll = () => {
+    const navList = document.querySelector('.account-nav__list');
+    if (!navList) return;
+
+    const activeItem = navList.querySelector('.is-active, .account-nav__item--active, [aria-current="page"]')?.closest('.account-nav__item') 
+        || navList.querySelector('.is-active, .account-nav__item--active');
+    if (!activeItem) return;
+
+    // Center active item if navigation is horizontally scrollable
+    if (navList.scrollWidth > navList.clientWidth) {
+        const navRect = navList.getBoundingClientRect();
+        const itemRect = activeItem.getBoundingClientRect();
+        const currentScroll = navList.scrollLeft;
+        const targetScroll = currentScroll + (itemRect.left - navRect.left) - (navList.clientWidth / 2) + (activeItem.clientWidth / 2);
+
+        navList.scrollTo({
+            left: Math.max(0, targetScroll),
+            behavior: 'smooth'
+        });
+    }
+};
+
+document.addEventListener('DOMContentLoaded', initAccountNavScroll);

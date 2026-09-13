@@ -23,6 +23,11 @@ main {
     z-index: 1;
 }
 
+
+body.woocommerce {
+	display: block;
+}
+
 a,
 button,
 label,
