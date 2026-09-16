@@ -30,13 +30,13 @@ $register_tab_active     = $is_register_active;
 		<ul class="tabs__list login-tabs__list" role="tablist" aria-label="<?php esc_attr_e( 'Вхід та реєстрація', 'steel-eshop' ); ?>">
 			<li class="tabs__item login-tabs__item <?php echo $login_tab_active ? 'is-active' : ''; ?>" role="presentation" data-target="tab-login">
 				<a href="#tab-login" class="tabs__link login-tabs__link" id="tab-link-login" role="tab" aria-selected="<?php echo $login_tab_active ? 'true' : 'false'; ?>" aria-controls="tab-login" tabindex="<?php echo $login_tab_active ? '0' : '-1'; ?>">
-					<span class="material-symbols login-tabs__icon" aria-hidden="true">login</span>
+					<span class="material-symbols login-tabs__icon" translate="no" aria-hidden="true">login</span>
 					<span class="login-tabs__text"><?php esc_html_e( 'Login', 'woocommerce' ); ?></span>
 				</a>
 			</li>
 			<li class="tabs__item login-tabs__item <?php echo $register_tab_active ? 'is-active' : ''; ?>" role="presentation" data-target="tab-register">
 				<a href="#tab-register" class="tabs__link login-tabs__link" id="tab-link-register" role="tab" aria-selected="<?php echo $register_tab_active ? 'true' : 'false'; ?>" aria-controls="tab-register" tabindex="<?php echo $register_tab_active ? '0' : '-1'; ?>">
-					<span class="material-symbols login-tabs__icon" aria-hidden="true">person_add</span>
+					<span class="material-symbols login-tabs__icon" translate="no" aria-hidden="true">person_add</span>
 					<span class="login-tabs__text"><?php esc_html_e( 'Register', 'woocommerce' ); ?></span>
 				</a>
 			</li>
@@ -50,7 +50,7 @@ $register_tab_active     = $is_register_active;
 
 	<div class="account-auth-card__header">
 		<div class="account-auth-card__icon">
-			<span class="material-symbols" aria-hidden="true">lock</span>
+			<span class="material-symbols" translate="no" aria-hidden="true">lock</span>
 		</div>
 		<h2 class="account-auth-card__title"><?php esc_html_e( 'Login', 'woocommerce' ); ?></h2>
 	</div>

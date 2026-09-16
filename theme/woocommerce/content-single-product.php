@@ -56,7 +56,7 @@ $is_in_wishlist = steel_is_in_wishlist( $product->get_id() );
 		<div class="product-gallery__slider swiper swiper--slider">
 
 			<button class="product-gallery__wishlist-button wishlist-button <?php echo $is_in_wishlist ? 'is-active' : ''; ?>" data-product-id="<?php the_ID(); ?>">
-				<span class="material-symbols">favorite</span>
+				<span class="material-symbols" translate="no">favorite</span>
 			</button>
 
 			<div class="swiper-wrapper">
@@ -87,10 +87,10 @@ $is_in_wishlist = steel_is_in_wishlist( $product->get_id() );
 			<?php if ( count( $product_img_ids ) > 1 ): ?>
 				<!-- navigation -->
 				<button class="swiper__button swiper__button--absolute swiper__button--prev button button--rounded">
-					<span class="material-symbols">keyboard_arrow_left</span>
+					<span class="material-symbols" translate="no">keyboard_arrow_left</span>
 				</button>
 				<button class="swiper__button swiper__button--absolute swiper__button--next button button--rounded">
-					<span class="material-symbols">keyboard_arrow_right</span>
+					<span class="material-symbols" translate="no">keyboard_arrow_right</span>
 				</button>
 			<?php endif; ?>
 		</div>
@@ -126,7 +126,7 @@ $is_in_wishlist = steel_is_in_wishlist( $product->get_id() );
 							<?php esc_html_e( 'Reviews:', 'steel-eshop' ); ?>
 						</span>
 
-						<span class="material-symbols material-symbols--filled">star</span>
+						<span class="material-symbols material-symbols--filled" translate="no">star</span>
 						<?php echo $product->get_average_rating(); ?>
 						/
 						<?php echo $product->get_rating_count(); ?>

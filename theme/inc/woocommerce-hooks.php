@@ -187,7 +187,7 @@ function steel_ajax_add_to_cart() {
             ob_clean();
         }
         wp_send_json_error( [
-            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Security check failed. Please refresh the page.', 'steel-eshop' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" aria-hidden="true">close</span></button></div>',
+            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Security check failed. Please refresh the page.', 'steel-eshop' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>',
         ] );
     }
 
@@ -216,7 +216,7 @@ function steel_ajax_add_to_cart() {
             ob_clean();
         }
         wp_send_json_error( [
-            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Product not found.', 'woocommerce' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" aria-hidden="true">close</span></button></div>',
+            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Product not found.', 'woocommerce' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>',
         ] );
     }
 
@@ -226,7 +226,7 @@ function steel_ajax_add_to_cart() {
             ob_clean();
         }
         wp_send_json_error( [
-            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Please select some product options before adding this product to your cart.', 'woocommerce' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" aria-hidden="true">close</span></button></div>',
+            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Please select some product options before adding this product to your cart.', 'woocommerce' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>',
         ] );
     }
 
@@ -317,7 +317,7 @@ function steel_ajax_add_to_cart() {
     wc_clear_notices();
 
     if ( empty( $notices_html ) ) {
-        $notices_html = '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Could not add product to cart.', 'woocommerce' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" aria-hidden="true">close</span></button></div>';
+        $notices_html = '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Could not add product to cart.', 'woocommerce' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>';
     }
 
     if ( ob_get_length() ) {

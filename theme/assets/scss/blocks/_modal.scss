@@ -83,19 +83,64 @@
 		}
 	}
 
+	&__layer-back-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: rem(6);
+		padding: rem(6) rem(8);
+		background: transparent;
+		border: none;
+		color: var(--st-c-light);
+		font-size: rem(15);
+		font-weight: 500;
+		cursor: pointer;
+		border-radius: var(--st-border-radius-3);
+		transition: color var(--st-transition-duration);
+
+		.material-symbols {
+			font-size: rem(22);
+		}
+
+		@include hover {
+			color: var(--st-c-accent);
+		}
+	}
+
 	&--offcanvas {
-		.modal__body {
+		.modal__body,
+		.modal__layer {
+			position: fixed;
 			top: 0;
 			right: 0;
 			left: auto;
 			width: rem(350);
 			height: 100dvh;
 			max-height: none;
+			overflow: auto;
+			background: var(--st-c-light);
 			transform: translateX(100%);
 			opacity: 1;
-			transition: transform var(--st-transition-duration);
+			transition: transform var(--st-transition-duration), opacity var(--st-transition-duration);
 
 			border-radius: 0;
+
+			@include mobile-s {
+				width: 100dvw;
+			}
+		}
+
+		.modal__body {
+			z-index: 200;
+		}
+
+		.modal__layer {
+			z-index: 210;
+			pointer-events: none;
+
+			&.is-open {
+				transform: translateX(0);
+				pointer-events: all;
+			}
 		}
 
 		&.is-open {
@@ -104,9 +149,11 @@
 			}
 		}
 
-		@include mobile-s {
+		&.has-layer-open {
 			.modal__body {
-				width: 100dvw;
+				transform: translateX(-20%);
+				opacity: 0.6;
+				pointer-events: none;
 			}
 		}
 	}

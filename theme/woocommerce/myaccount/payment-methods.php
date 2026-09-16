@@ -72,7 +72,7 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 
 		<div class="account-empty">
 			<div class="account-empty__icon" aria-hidden="true">
-				<span class="material-symbols">credit_card</span>
+				<span class="material-symbols" translate="no">credit_card</span>
 			</div>
 			<h3 class="account-empty__title"><?php esc_html_e( 'No saved methods found.', 'woocommerce' ); ?></h3>
 			<p class="account-empty__text"><?php esc_html_e( 'You can save payment methods for faster checkout next time.', 'steel-eshop' ); ?></p>
@@ -85,7 +85,7 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 	<?php if ( WC()->payment_gateways->get_available_payment_gateways() ) : ?>
 		<div class="account-payment-methods__add">
 			<a class="button" href="<?php echo esc_url( wc_get_endpoint_url( 'add-payment-method' ) ); ?>">
-				<span class="material-symbols" aria-hidden="true">add</span>
+				<span class="material-symbols" translate="no" aria-hidden="true">add</span>
 				<span><?php esc_html_e( 'Add payment method', 'woocommerce' ); ?></span>
 			</a>
 		</div>

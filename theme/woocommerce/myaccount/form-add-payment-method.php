@@ -17,7 +17,7 @@ $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 <div class="account-add-payment-method">
 	<div class="account-add-payment-method__top">
 		<a href="<?php echo esc_url( wc_get_endpoint_url( 'payment-methods' ) ); ?>" class="button button--transparent button--small account-add-payment-method__back">
-			<span class="material-symbols" aria-hidden="true">arrow_back</span>
+			<span class="material-symbols" translate="no" aria-hidden="true">arrow_back</span>
 			<span><?php esc_html_e( 'Back to payment methods', 'steel-eshop' ); ?></span>
 		</a>
 	</div>

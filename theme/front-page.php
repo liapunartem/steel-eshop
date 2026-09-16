@@ -61,10 +61,10 @@ global $steel_theme_settings;
 
                 <!-- navigation -->
                 <button class="swiper__button swiper__button--absolute swiper__button--prev button button--rounded" aria-label="<?php esc_attr_e( 'Previous slide', 'steel-eshop' ); ?>">
-                    <span class="material-symbols">keyboard_arrow_left</span>
+                    <span class="material-symbols" translate="no">keyboard_arrow_left</span>
                 </button>
                 <button class="swiper__button swiper__button--absolute swiper__button--next button button--rounded" aria-label="<?php esc_attr_e( 'Next slide', 'steel-eshop' ); ?>">
-                    <span class="material-symbols">keyboard_arrow_right</span>
+                    <span class="material-symbols" translate="no">keyboard_arrow_right</span>
                 </button>
                 <!-- pagination -->
                 <div class="swiper__pagination"></div>
@@ -101,7 +101,7 @@ global $steel_theme_settings;
                     ?>
                     <a href="<?php echo esc_url( $catalog_url ); ?>">
                         <?php _e( 'All categories', 'steel-eshop' ) ?>
-                        <span class="material-symbols">stat_minus_1</span>
+                        <span class="material-symbols" translate="no">stat_minus_1</span>
                     </a>
                 </footer>
             </section>

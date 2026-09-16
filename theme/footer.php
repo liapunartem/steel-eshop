@@ -45,7 +45,7 @@
 				<div class="footer__categories">
 					<div class="footer__categories-title footer__title">
 						<?php _e( 'Categories', 'steel-eshop' ) ?>
-						<span class="footer__categories-title-icon visible-mobile material-symbols">stat_minus_1</span>
+						<span class="footer__categories-title-icon visible-mobile material-symbols" translate="no">stat_minus_1</span>
 					</div>
 					<?php steel_footer_categories(); ?>
 				</div>
@@ -57,7 +57,7 @@
 
 						<div class="footer__contact-item">
 							<div class="footer__contact-title">
-								<span class="footer__contact-icon material-symbols">location_on</span>
+								<span class="footer__contact-icon material-symbols" translate="no">location_on</span>
 								<?php _e( 'Store address', 'steel-eshop' ) ?>
 							</div>
 							<span class="footer__contact-text">
@@ -70,7 +70,7 @@
 
 						<div class="footer__contact-item">
 							<div class="footer__contact-title">
-								<span class="footer__contact-icon material-symbols">mail</span>
+								<span class="footer__contact-icon material-symbols" translate="no">mail</span>
 								Email
 							</div>
 							<span class="footer__contact-text">
@@ -87,7 +87,7 @@
 
 						<div class="footer__contact-item">
 							<div class="footer__contact-title">
-								<span class="footer__contact-icon material-symbols">call</span>
+								<span class="footer__contact-icon material-symbols" translate="no">call</span>
 								<?php _e( 'Phone numbers', 'steel-eshop' ) ?>
 							</div>
 							<span class="footer__contact-text">
@@ -104,7 +104,7 @@
 
 						<div class="footer__contact-item">
 							<div class="footer__contact-title">
-								<span class="footer__contact-icon material-symbols">schedule</span>
+								<span class="footer__contact-icon material-symbols" translate="no">schedule</span>
 								<?php _e( 'Work schedule', 'steel-eshop' ) ?>
 							</div>
 							<span class="footer__contact-text">

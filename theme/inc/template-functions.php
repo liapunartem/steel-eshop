@@ -249,99 +249,16 @@ function st_load_more_reviews( int $page ): void {
     );
 }
 
-
-
-
 /**
- * Допоміжні функції для перевірки та отримання списку обраного
+ * Clear wishlist cookie from device.
  */
-// function steel_get_user_wishlist( $user_id = 0 ) {
-// 	if ( ! $user_id ) {
-// 		$user_id = get_current_user_id();
-// 	}
-// 	if ( ! $user_id ) {
-// 		return [];
-// 	}
-
-// 	$wishlist = get_user_meta( $user_id, 'steel_wishlist', true );
-// 	return is_array( $wishlist ) ? array_map( 'absint', $wishlist ) : [];
-// }
-
-// function steel_is_in_wishlist( $product_id, $user_id = 0 ) {
-// 	$wishlist = steel_get_user_wishlist( $user_id );
-// 	return in_array( (int) $product_id, $wishlist, true );
-// }
-
-// /**
-//  * 3. Обробник AJAX-запиту (Тільки для авторизованих)
-//  */
-// add_action( 'wp_ajax_steel_toggle_wishlist', 'steel_toggle_wishlist_cb' );
-// function steel_toggle_wishlist_cb() {
-// 	// Перевірка nonce
-// 	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'steel_wishlist_nonce' ) ) {
-// 		wp_send_json_error( [ 'message' => __( 'Невірно передано токен безпеки.', 'steel-eshop' ), ] );
-// 	}
-
-// 	// Перевірка авторизації
-// 	if ( ! is_user_logged_in() ) {
-// 		wp_send_json_error( [ 'message' => __( 'Авторизація обовʼязкова.', 'steel-eshop' ), ] );
-// 	}
-
-// 	$product_id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
-// 	$product    = wc_get_product( $product_id );
-
-// 	if ( ! $product || 'publish' !== $product->get_status() ) {
-// 		wp_send_json_error( [ 'message' => __( 'Товар не знайдено або він недоступний.', 'steel-eshop' ), ] );
-// 	}
-
-// 	$user_id  = get_current_user_id();
-// 	$wishlist = steel_get_user_wishlist( $user_id );
-
-// 	if ( in_array( $product_id, $wishlist, true ) ) {
-// 		// Видаляємо з обраного
-// 		$wishlist = array_diff( $wishlist, [ $product_id, ] );
-// 		$action   = 'removed';
-// 		$message  = __( 'Товар видалено з обраного.', 'steel-eshop' );
-// 	} else {
-// 		// Додаємо в обране
-// 		$wishlist[] = $product_id;
-// 		$action     = 'added';
-// 		$message    = __( 'Товар додано в обране.', 'steel-eshop' );
-// 	}
-
-// 	// Оновлюємо метадані користувача
-// 	update_user_meta( $user_id, 'steel_wishlist', array_values( array_unique( $wishlist ) ) );
-
-// 	wp_send_json_success( [
-// 		'action'     => $action,
-// 		'product_id' => $product_id,
-// 		'count'      => count( $wishlist ),
-// 		'message'    => $message,
-// 	] );
-// }
-
-
-
-
-/**
- * Retrieve wishlist product IDs from cookies.
- */
-function steel_get_wishlist_ids() {
-	if ( ! isset( $_COOKIE['steel_wishlist'] ) || empty( $_COOKIE['steel_wishlist'] ) ) {
-		return array();
+function steel_clear_wishlist_cookie() {
+	if ( isset( $_COOKIE['steel_wishlist'] ) ) {
+		unset( $_COOKIE['steel_wishlist'] );
 	}
-	$ids = explode( ',', $_COOKIE['steel_wishlist'] );
-	return array_map( 'absint', array_filter( $ids ) );
-}
-
-/**
- * Save wishlist product IDs to cookie.
- */
-function steel_set_wishlist( array $wishlist ) {
-	$wishlist_string = implode( ',', array_unique( array_map( 'absint', $wishlist ) ) );
-	$is_ssl          = is_ssl();
-	setcookie( 'steel_wishlist', $wishlist_string, [
-		'expires'  => time() + ( 3600 * 24 * 30 ),
+	$is_ssl = is_ssl();
+	setcookie( 'steel_wishlist', '', [
+		'expires'  => time() - 3600,
 		'path'     => '/',
 		'secure'   => $is_ssl,
 		'httponly' => false,
@@ -350,11 +267,168 @@ function steel_set_wishlist( array $wishlist ) {
 }
 
 /**
+ * Retrieve wishlist product IDs for the current user or guest.
+ * For logged-in users, retrieves from user_meta and automatically merges any temporary cookie items.
+ * For guests, retrieves from the 'steel_wishlist' cookie.
+ *
+ * @return int[]
+ */
+function steel_get_wishlist_ids() {
+	if ( is_user_logged_in() ) {
+		$user_id       = get_current_user_id();
+		$user_wishlist = get_user_meta( $user_id, 'steel_wishlist', true );
+		$user_wishlist = is_array( $user_wishlist ) ? array_map( 'absint', array_filter( $user_wishlist ) ) : array();
+
+		// Merge temporary cookie if present
+		if ( ! empty( $_COOKIE['steel_wishlist'] ) ) {
+			$cookie_ids = array_map( 'absint', array_filter( explode( ',', wp_unslash( $_COOKIE['steel_wishlist'] ) ) ) );
+			if ( ! empty( $cookie_ids ) ) {
+				$user_wishlist = array_values( array_unique( array_merge( $user_wishlist, $cookie_ids ) ) );
+				update_user_meta( $user_id, 'steel_wishlist', $user_wishlist );
+			}
+			steel_clear_wishlist_cookie();
+		}
+
+		return $user_wishlist;
+	}
+
+	if ( ! isset( $_COOKIE['steel_wishlist'] ) || empty( $_COOKIE['steel_wishlist'] ) ) {
+		return array();
+	}
+	$ids = explode( ',', wp_unslash( $_COOKIE['steel_wishlist'] ) );
+	return array_values( array_unique( array_map( 'absint', array_filter( $ids ) ) ) );
+}
+
+/**
+ * Save wishlist product IDs for user or guest.
+ * If logged-in, saves to user_meta and clears any guest cookie.
+ * If guest, saves to cookie.
+ *
+ * @param int[]    $wishlist Array of product IDs.
+ * @param int|null $user_id  Optional user ID.
+ */
+function steel_set_wishlist( array $wishlist, $user_id = null ) {
+	$clean_ids = array_values( array_unique( array_map( 'absint', array_filter( $wishlist ) ) ) );
+
+	if ( ! $user_id && is_user_logged_in() ) {
+		$user_id = get_current_user_id();
+	}
+
+	if ( $user_id ) {
+		update_user_meta( $user_id, 'steel_wishlist', $clean_ids );
+		steel_clear_wishlist_cookie();
+	} else {
+		$wishlist_string = implode( ',', $clean_ids );
+		$is_ssl          = is_ssl();
+		setcookie( 'steel_wishlist', $wishlist_string, [
+			'expires'  => time() + ( 3600 * 24 * 30 ),
+			'path'     => '/',
+			'secure'   => $is_ssl,
+			'httponly' => false,
+			'samesite' => 'Lax',
+		] );
+		$_COOKIE['steel_wishlist'] = $wishlist_string;
+	}
+}
+
+/**
  * Check if product is in wishlist.
  */
 function steel_is_in_wishlist( $product_id ) {
 	$wishlist = steel_get_wishlist_ids();
 	return in_array( (int) $product_id, $wishlist, true );
+}
+
+/**
+ * Sync guest wishlist and cart on user login.
+ *
+ * @param string  $user_login Username.
+ * @param WP_User $user       User object.
+ */
+add_action( 'wp_login', 'steel_sync_guest_data_on_login', 20, 2 );
+function steel_sync_guest_data_on_login( $user_login, $user ) {
+	if ( ! $user || ! isset( $user->ID ) ) {
+		return;
+	}
+
+	$user_id = $user->ID;
+
+	// 1. Merge guest wishlist into user account
+	if ( ! empty( $_COOKIE['steel_wishlist'] ) ) {
+		$cookie_ids = array_map( 'absint', array_filter( explode( ',', wp_unslash( $_COOKIE['steel_wishlist'] ) ) ) );
+		if ( ! empty( $cookie_ids ) ) {
+			$user_wishlist = get_user_meta( $user_id, 'steel_wishlist', true );
+			$user_wishlist = is_array( $user_wishlist ) ? array_map( 'absint', array_filter( $user_wishlist ) ) : array();
+			$merged        = array_values( array_unique( array_merge( $user_wishlist, $cookie_ids ) ) );
+			update_user_meta( $user_id, 'steel_wishlist', $merged );
+		}
+		steel_clear_wishlist_cookie();
+	}
+
+	// 2. Instruct WooCommerce to merge saved cart with current session cart
+	update_user_meta( $user_id, '_woocommerce_load_saved_cart_after_login', 1 );
+}
+
+/**
+ * Sync guest wishlist and cart on customer registration.
+ *
+ * @param int $customer_id New customer ID.
+ */
+add_action( 'woocommerce_created_customer', 'steel_sync_guest_data_on_register', 20, 1 );
+add_action( 'user_register', 'steel_sync_guest_data_on_register', 20, 1 );
+function steel_sync_guest_data_on_register( $customer_id ) {
+	if ( ! $customer_id ) {
+		return;
+	}
+
+	// 1. Move guest wishlist to new user account
+	if ( ! empty( $_COOKIE['steel_wishlist'] ) ) {
+		$cookie_ids = array_map( 'absint', array_filter( explode( ',', wp_unslash( $_COOKIE['steel_wishlist'] ) ) ) );
+		if ( ! empty( $cookie_ids ) ) {
+			$user_wishlist = get_user_meta( $customer_id, 'steel_wishlist', true );
+			$user_wishlist = is_array( $user_wishlist ) ? array_map( 'absint', array_filter( $user_wishlist ) ) : array();
+			$merged        = array_values( array_unique( array_merge( $user_wishlist, $cookie_ids ) ) );
+			update_user_meta( $customer_id, 'steel_wishlist', $merged );
+		}
+		steel_clear_wishlist_cookie();
+	}
+
+	// 2. Persist active cart items for the new user
+	if ( function_exists( 'WC' ) && WC()->cart && ! WC()->cart->is_empty() ) {
+		if ( isset( WC()->cart->session ) && is_callable( array( WC()->cart->session, 'persistent_cart_update' ) ) ) {
+			WC()->cart->session->persistent_cart_update();
+		}
+	}
+}
+
+/**
+ * Clear lists from device on logout.
+ * Persistent account data remains in the database (user_meta and persistent cart).
+ *
+ * @param int $user_id User ID being logged out.
+ */
+add_action( 'wp_logout', 'steel_handle_user_logout', 5, 1 );
+function steel_handle_user_logout( $user_id ) {
+	// 1. Clear wishlist cookie so device does not retain user wishlist
+	steel_clear_wishlist_cookie();
+
+	// 2. Save user cart to persistent cart user meta, then empty active device cart
+	if ( function_exists( 'WC' ) ) {
+		if ( $user_id && WC()->cart && ! WC()->cart->is_empty() ) {
+			if ( isset( WC()->cart->session ) && is_callable( array( WC()->cart->session, 'persistent_cart_update' ) ) ) {
+				WC()->cart->session->persistent_cart_update();
+			}
+		}
+
+		if ( WC()->cart ) {
+			WC()->cart->empty_cart( false ); // false = keep persistent cart in DB
+		}
+
+		if ( function_exists( 'wc_setcookie' ) ) {
+			wc_setcookie( 'woocommerce_items_in_cart', '', time() - YEAR_IN_SECONDS );
+			wc_setcookie( 'woocommerce_cart_hash', '', time() - YEAR_IN_SECONDS );
+		}
+	}
 }
 
 /**
@@ -448,7 +522,7 @@ function steel_get_wishlist_html() {
 							aria-label="<?php echo esc_attr( sprintf( __( 'Remove %s from wishlist', 'steel-eshop' ), wp_strip_all_tags( $product_name ) ) ); ?>" 
 							data-product_id="<?php echo esc_attr( $product_id ); ?>"
 						>
-                            <div class="material-symbols">delete</div>
+                            <div class="material-symbols" translate="no">delete</div>
                         </a>
 
 						<!-- Product image -->
@@ -492,6 +566,31 @@ function steel_get_wishlist_html() {
 				<?php esc_html_e( 'No products in the wishlist.', 'steel-eshop' ); ?>
 			</p>
 
+		<?php endif; ?>
+
+		<?php if ( ! is_user_logged_in() ) :
+			$account_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : wp_login_url();
+		?>
+			<div class="wishlist__notice">
+				<span class="material-symbols" translate="no" aria-hidden="true">info</span>
+				<p>
+					<?php
+					printf(
+						wp_kses(
+							__( 'Якщо ви хочете зберігати товари між іншими пристроями, будь ласка, <a href="%1$s">увійдіть</a> або <a href="%2$s">зареєструйтесь</a>.', 'steel-eshop' ),
+							array(
+								'a' => array(
+									'href'  => array(),
+									'class' => array(),
+								),
+							)
+						),
+						esc_url( $account_url . '#tab-login' ),
+						esc_url( $account_url . '#tab-register' )
+					);
+					?>
+				</p>
+			</div>
 		<?php endif; ?>
 	</div>
 	<?php

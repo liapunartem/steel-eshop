@@ -144,7 +144,7 @@
                         <div class="notices notices--error" role="alert">
                             <div class="notices__content">${msg}</div>
                             <button type="button" class="close-notice-btn" aria-label="Закрити сповіщення">
-                                <span class="material-symbols" aria-hidden="true">close</span>
+                                <span class="material-symbols" translate="no" aria-hidden="true">close</span>
                             </button>
                         </div>
                     `);
@@ -227,7 +227,7 @@
                     <div class="notices notices--error" role="alert">
                         <div class="notices__content">Не вдалося додати товар до кошика. Спробуйте ще раз.</div>
                         <button type="button" class="close-notice-btn" aria-label="Закрити сповіщення">
-                            <span class="material-symbols" aria-hidden="true">close</span>
+                            <span class="material-symbols" translate="no" aria-hidden="true">close</span>
                         </button>
                     </div>
                 `;
@@ -242,7 +242,7 @@
                     <div class="notices notices--error" role="alert">
                         <div class="notices__content">Помилка під час відправки запиту. Спробуйте пізніше.</div>
                         <button type="button" class="close-notice-btn" aria-label="Закрити сповіщення">
-                            <span class="material-symbols" aria-hidden="true">close</span>
+                            <span class="material-symbols" translate="no" aria-hidden="true">close</span>
                         </button>
                     </div>
                 `);

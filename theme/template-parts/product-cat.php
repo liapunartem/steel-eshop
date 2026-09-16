@@ -32,7 +32,7 @@ if ( $thumbnail_id ) {
         <div class="category-card__wrapper">
             <span class="category-card__title">
                 <?php echo esc_html( $cat->name ); ?>
-                <span class="material-symbols">chevron_right</span>
+                <span class="material-symbols" translate="no">chevron_right</span>
             </span>
         </div>
 

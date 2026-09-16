@@ -19,7 +19,7 @@ $children = $category_tree['children'];
             <a href="<?php echo esc_url( get_term_link( $parent ) ); ?>" class="dropdown-categories__link">
                 <span class="dropdown-categories__title"><?php echo esc_html( $parent->name ); ?></span>
                 <?php if ( $has_children ) : ?>
-                    <span class="dropdown-categories__icon material-symbols" aria-hidden="true">keyboard_arrow_right</span>
+                    <span class="dropdown-categories__icon material-symbols" translate="no" aria-hidden="true">keyboard_arrow_right</span>
                 <?php endif; ?>
             </a>
 

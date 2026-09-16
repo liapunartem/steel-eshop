@@ -20,7 +20,7 @@ $is_in_wishlist = steel_is_in_wishlist( $product_id );
     <!-- <?php woocommerce_show_product_loop_sale_flash() ?> -->
 
     <button type="button" class="product-card__wishlist-button wishlist-button <?php echo $is_in_wishlist ? 'is-active' : ''; ?>" data-product-id="<?php echo esc_attr( $product_id ); ?>" aria-label="<?php echo esc_attr( sprintf( $is_in_wishlist ? __( 'Remove %s from wishlist', 'steel-eshop' ) : __( 'Add %s to wishlist', 'steel-eshop' ), $product->get_name() ) ); ?>">
-        <span class="material-symbols">favorite</span>
+        <span class="material-symbols" translate="no">favorite</span>
     </button>
 
     <div class="product-card__image-wrap">

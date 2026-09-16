@@ -39,7 +39,7 @@ class Steel_Dropdown_Categories extends Walker_Nav_Menu {
 
         // Icon only if has children AND only for top level (як у твоєму HTML)
         if ( ! empty( $args->walker->has_children ) && $depth === 0 ) {
-            $output .= '<span class="dropdown-categories__icon material-symbols">keyboard_arrow_right</span>';
+            $output .= '<span class="dropdown-categories__icon material-symbols" translate="no">keyboard_arrow_right</span>';
         }
 
         $output .= '</a>';

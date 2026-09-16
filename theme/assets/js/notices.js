@@ -49,7 +49,7 @@ function initNotices() {
             closeBtn.type = 'button';
             closeBtn.className = 'close-notice-btn';
             closeBtn.setAttribute('aria-label', 'Close notice');
-            closeBtn.innerHTML = '<span class="material-symbols" aria-hidden="true">close</span>';
+            closeBtn.innerHTML = '<span class="material-symbols" translate="no" aria-hidden="true">close</span>';
             notice.appendChild(closeBtn);
         }
 

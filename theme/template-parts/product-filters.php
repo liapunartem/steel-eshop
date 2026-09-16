@@ -7,7 +7,7 @@
         <div class="modal__header visible-tablet">
             <span class="modal__title"><?php _e( 'Filters', 'steel-eshop' ) ?></span>
             <button class="modal__close-btn">
-                <span class="material-symbols material-symbols--filled">close</span>
+                <span class="material-symbols material-symbols--filled" translate="no">close</span>
             </button>
         </div>
 

@@ -32,6 +32,6 @@ if ( ! $notices ) {
 		<?php endforeach; ?>
 	</div>
 	<button type="button" class="close-notice-btn" aria-label="<?php esc_attr_e( 'Close notice', 'steel-eshop' ); ?>">
-		<span class="material-symbols" aria-hidden="true">close</span>
+		<span class="material-symbols" translate="no" aria-hidden="true">close</span>
 	</button>
 </div>

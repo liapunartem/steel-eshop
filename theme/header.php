@@ -39,21 +39,25 @@
                     ?>
                 </nav>
 
+                <a href="<?php echo esc_url( function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : wp_login_url() ); ?>" class="header__account hidden-tablet" aria-label="<?php esc_attr_e( 'My account', 'steel-eshop' ); ?>">
+                    <span class="material-symbols material-symbols--filled" translate="no">person</span>
+                </a>
+
                 <nav class="header__nav-buttons visible-tablet" aria-label="<?php esc_attr_e( 'Mobile Actions', 'steel-eshop' ); ?>">
                     <button class="header__nav-btn header__wishlist-button" data-modal="modal-wishlist" aria-label="<?php esc_attr_e( 'View wishlist', 'steel-eshop' ); ?>">
-                        <span class="material-symbols material-symbols--filled">favorite</span>
+                        <span class="material-symbols material-symbols--filled" translate="no">favorite</span>
                         <span class="header__wishlist-count header__nav-btn-count <?php echo $wishlist_count ? '' : 'visually-hidden'; ?>">
                             <?php echo esc_html( $wishlist_count ); ?>
                         </span>
                     </button>
                     <button class="header__nav-btn cart-button" data-modal="modal-cart" aria-label="<?php esc_attr_e( 'View cart', 'steel-eshop' ); ?>">
-                        <span class="material-symbols material-symbols--filled">shopping_cart</span>
+                        <span class="material-symbols material-symbols--filled" translate="no">shopping_cart</span>
                         <span class="cart-button__count header__nav-btn-count <?php echo $cart_count ? '' : 'visually-hidden'; ?>">
                             <?php echo esc_html( $cart_count ); ?>
                         </span>
                     </button>
                     <button class="header__nav-btn burger-menu-button" data-modal="mobile-menu" aria-label="<?php esc_attr_e( 'Open mobile menu', 'steel-eshop' ); ?>">
-                        <span class="material-symbols material-symbols--filled">density_medium</span>
+                        <span class="material-symbols material-symbols--filled" translate="no">density_medium</span>
                     </button>
                 </nav>
             </div>
@@ -66,10 +70,10 @@
                 <div class="header__categories hidden-tablet">
                     <button class="header__categories-button <?php if ( function_exists('is_shop') && is_shop() ): echo 'sidebar-toggle-button'; endif; ?>" aria-label="<?php esc_attr_e( 'Toggle product catalog', 'steel-eshop' ); ?>">
                         <div class="header__categories-button-title">
-                            <span class="material-symbols">widgets</span>
+                            <span class="material-symbols" translate="no">widgets</span>
                             <?php _e( 'Product catalog', 'steel-eshop' ); ?>
                         </div>
-                        <span class="material-symbols">stat_minus_1</span>
+                        <span class="material-symbols" translate="no">stat_minus_1</span>
                     </button>
                     <nav class="header__categories-body" aria-label="<?php esc_attr_e( 'Categories Navigation', 'steel-eshop' ); ?>">
                         <?php steel_dropdown_categories(); ?>
@@ -81,13 +85,13 @@
 
                 <nav class="header__nav-buttons hidden-tablet" aria-label="<?php esc_attr_e( 'User Actions', 'steel-eshop' ); ?>">
                     <button class="header__nav-btn header__wishlist-button" data-modal="modal-wishlist" aria-label="<?php esc_attr_e( 'View wishlist', 'steel-eshop' ); ?>">
-                        <span class="material-symbols material-symbols--filled">favorite</span>
+                        <span class="material-symbols material-symbols--filled" translate="no">favorite</span>
                         <span class="header__wishlist-count header__nav-btn-count <?php echo $wishlist_count ? '' : 'visually-hidden'; ?>">
                             <?php echo esc_html( $wishlist_count ); ?>
                         </span>
                     </button>
                     <button class="header__nav-btn cart-button" data-modal="modal-cart" aria-label="<?php esc_attr_e( 'View cart', 'steel-eshop' ); ?>">
-                        <span class="material-symbols material-symbols--filled">shopping_cart</span>
+                        <span class="material-symbols material-symbols--filled" translate="no">shopping_cart</span>
                         <span class="cart-button__count header__nav-btn-count <?php echo $cart_count ? '' : 'visually-hidden'; ?>">
                             <?php echo esc_html( $cart_count ); ?>
                         </span>

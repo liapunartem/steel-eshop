@@ -50,13 +50,13 @@ $col    = 1;
 			<div class="account-address-card u-column<?php echo $col < 0 ? 1 : 2; ?> col-<?php echo $oldcol < 0 ? 1 : 2; ?> woocommerce-Address">
 				<header class="account-address-card__header woocommerce-Address-title title">
 					<div class="account-address-card__title-group">
-						<span class="account-address-card__icon material-symbols" aria-hidden="true">
+						<span class="account-address-card__icon material-symbols" translate="no" aria-hidden="true">
 							<?php echo 'shipping' === $name ? 'local_shipping' : 'receipt_long'; ?>
 						</span>
 						<h3 class="account-address-card__title"><?php echo esc_html( $address_title ); ?></h3>
 					</div>
 					<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="button button--transparent button--small account-address-card__button edit">
-						<span class="material-symbols" aria-hidden="true">edit</span>
+						<span class="material-symbols" translate="no" aria-hidden="true">edit</span>
 						<span>
 							<?php
 							printf(

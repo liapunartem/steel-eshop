@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="account-auth-card">
 	<div class="account-auth-card__icon" aria-hidden="true">
-		<span class="material-symbols">mark_email_read</span>
+		<span class="material-symbols" translate="no">mark_email_read</span>
 	</div>
 
 	<h2 class="account-auth-card__title"><?php esc_html_e( 'Check your email', 'steel-eshop' ); ?></h2>

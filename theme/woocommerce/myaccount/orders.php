@@ -129,7 +129,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 
 	<div class="account-empty">
 		<div class="account-empty__icon" aria-hidden="true">
-			<span class="material-symbols">shopping_bag</span>
+			<span class="material-symbols" translate="no">shopping_bag</span>
 		</div>
 		<h3 class="account-empty__title"><?php esc_html_e( 'No orders yet', 'steel-eshop' ); ?></h3>
 		<p class="account-empty__text"><?php esc_html_e( 'You have not placed any orders yet. Discover our catalog and find what you need!', 'steel-eshop' ); ?></p>

@@ -60,7 +60,21 @@
 }
 
 .header__account {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(40);
+    height: rem(40);
     color: var(--st-c-accent);
+    transition: color var(--st-transition-duration);
+
+    .material-symbols {
+        font-size: rem(28);
+    }
+
+    @include hover {
+        color: var(--st-c-light);
+    }
 }
 
 .header__categories {

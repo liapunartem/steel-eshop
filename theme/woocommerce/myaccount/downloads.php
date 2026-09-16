@@ -35,7 +35,7 @@ do_action( 'woocommerce_before_account_downloads', $has_downloads ); ?>
 
 		<div class="account-empty">
 			<div class="account-empty__icon" aria-hidden="true">
-				<span class="material-symbols">download</span>
+				<span class="material-symbols" translate="no">download</span>
 			</div>
 			<h3 class="account-empty__title"><?php esc_html_e( 'No downloads available yet.', 'woocommerce' ); ?></h3>
 			<p class="account-empty__text"><?php esc_html_e( 'When you purchase digital or downloadable items, they will appear here.', 'steel-eshop' ); ?></p>

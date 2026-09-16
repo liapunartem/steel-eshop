@@ -22,7 +22,7 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 
 		<div class="account-edit-address__top">
 			<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address' ) ); ?>" class="button button--transparent button--small account-edit-address__back">
-				<span class="material-symbols" aria-hidden="true">arrow_back</span>
+				<span class="material-symbols" translate="no" aria-hidden="true">arrow_back</span>
 				<span><?php esc_html_e( 'Back to addresses', 'steel-eshop' ); ?></span>
 			</a>
 		</div>

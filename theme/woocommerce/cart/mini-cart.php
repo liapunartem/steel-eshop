@@ -40,7 +40,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 					echo apply_filters(
 						'woocommerce_cart_item_remove_link',
 						sprintf(
-							'<a role="button" href="%s" class="mini-cart__remove-button remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s" data-success_message="%s"><div class="material-symbols">delete</div></a>',
+							'<a role="button" href="%s" class="mini-cart__remove-button remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s" data-success_message="%s"><div class="material-symbols" translate="no">delete</div></a>',
 							esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 							esc_attr( sprintf( __( 'Remove %s from cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) ),
 							esc_attr( $product_id ),
@@ -120,6 +120,31 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 		<?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?>
 	</p>
 
+<?php endif; ?>
+
+<?php if ( ! is_user_logged_in() ) : 
+	$account_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : wp_login_url();
+?>
+	<div class="mini-cart__notice">
+		<span class="material-symbols" translate="no" aria-hidden="true">info</span>
+		<p>
+			<?php
+			printf(
+				wp_kses(
+					__( 'Якщо ви хочете зберігати товари між іншими пристроями, будь ласка, <a href="%1$s">увійдіть</a> або <a href="%2$s">зареєструйтесь</a>.', 'steel-eshop' ),
+					array(
+						'a' => array(
+							'href'  => array(),
+							'class' => array(),
+						),
+					)
+				),
+				esc_url( $account_url . '#tab-login' ),
+				esc_url( $account_url . '#tab-register' )
+			);
+			?>
+		</p>
+	</div>
 <?php endif; ?>
 </div>
 

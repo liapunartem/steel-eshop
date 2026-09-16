@@ -19,7 +19,7 @@ $notes = $order->get_customer_order_notes();
 <div class="account-view-order">
 	<div class="account-view-order__top">
 		<a href="<?php echo esc_url( wc_get_endpoint_url( 'orders' ) ); ?>" class="button button--transparent button--small account-view-order__back">
-			<span class="material-symbols" aria-hidden="true">arrow_back</span>
+			<span class="material-symbols" translate="no" aria-hidden="true">arrow_back</span>
 			<span><?php esc_html_e( 'Back to orders', 'steel-eshop' ); ?></span>
 		</a>
 	</div>

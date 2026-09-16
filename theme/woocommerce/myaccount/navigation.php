@@ -39,7 +39,7 @@ $nav_icons = [
 		?>
 			<li class="<?php echo esc_attr( $item_classes ); ?>">
 				<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>" class="account-nav__link" <?php echo $is_active ? 'aria-current="page"' : ''; ?>>
-					<span class="account-nav__icon material-symbols" aria-hidden="true"><?php echo esc_html( $icon ); ?></span>
+					<span class="account-nav__icon material-symbols" translate="no" aria-hidden="true"><?php echo esc_html( $icon ); ?></span>
 					<span class="account-nav__label"><?php echo esc_html( $label ); ?></span>
 				</a>
 			</li>

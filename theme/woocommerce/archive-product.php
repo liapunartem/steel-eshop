@@ -31,10 +31,10 @@ do_action( 'woocommerce_before_main_content' );
 
                 <!-- Navigation -->
                 <button class="swiper__button swiper__button--absolute swiper__button--prev button button--rounded" aria-label="<?php esc_attr_e( 'Previous categories', 'steel-eshop' ); ?>">
-                    <span class="material-symbols">keyboard_arrow_left</span>
+                    <span class="material-symbols" translate="no">keyboard_arrow_left</span>
                 </button>
                 <button class="swiper__button swiper__button--absolute swiper__button--next button button--rounded" aria-label="<?php esc_attr_e( 'Next categories', 'steel-eshop' ); ?>">
-                    <span class="material-symbols">keyboard_arrow_right</span>
+                    <span class="material-symbols" translate="no">keyboard_arrow_right</span>
                 </button>
 
             </div>
@@ -66,7 +66,7 @@ do_action( 'woocommerce_before_main_content' );
                         data-modal="product-filters" data-lock-class="no-scroll-tablet"
                         aria-label="<?php esc_attr_e( 'Filter products', 'steel-eshop' ); ?>"
                     >
-                        <span class="material-symbols">tune</span>
+                        <span class="material-symbols" translate="no">tune</span>
                     </button>
                 <?php endif; ?>
                 <?php woocommerce_catalog_ordering(); ?>
@@ -91,12 +91,10 @@ do_action( 'woocommerce_before_main_content' );
                     <?php endwhile; ?>
                 </ul>
 
-                <?php do_action( 'woocommerce_after_shop_loop' ); ?>
-
             <?php else : ?>
 
                 <div class="products__empty">
-                    <span class="material-symbols">search_off</span>
+                    <span class="material-symbols" translate="no">search_off</span>
                     <?php _e( 'Unfortunately, nothing was found.', 'steel-eshop' ); ?>
                 </div>
 

@@ -27,7 +27,7 @@ $allowed_html = [
 <div class="account-dashboard">
 	<header class="account-dashboard__header">
 		<div class="account-dashboard__avatar" aria-hidden="true">
-			<span class="material-symbols">account_circle</span>
+			<span class="material-symbols" translate="no">account_circle</span>
 		</div>
 		<div class="account-dashboard__user">
 			<h2 class="account-dashboard__greeting">
@@ -69,35 +69,35 @@ $allowed_html = [
 	<div class="account-dashboard__cards">
 		<a href="<?php echo esc_url( wc_get_endpoint_url( 'orders' ) ); ?>" class="account-card">
 			<div class="account-card__icon" aria-hidden="true">
-				<span class="material-symbols">package_2</span>
+				<span class="material-symbols" translate="no">package_2</span>
 			</div>
 			<div class="account-card__info">
 				<span class="account-card__title"><?php esc_html_e( 'Orders', 'woocommerce' ); ?></span>
 				<span class="account-card__desc"><?php esc_html_e( 'View order history, status and receipts', 'steel-eshop' ); ?></span>
 			</div>
-			<span class="account-card__arrow material-symbols" aria-hidden="true">arrow_forward</span>
+			<span class="account-card__arrow material-symbols" translate="no" aria-hidden="true">arrow_forward</span>
 		</a>
 
 		<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address' ) ); ?>" class="account-card">
 			<div class="account-card__icon" aria-hidden="true">
-				<span class="material-symbols">location_on</span>
+				<span class="material-symbols" translate="no">location_on</span>
 			</div>
 			<div class="account-card__info">
 				<span class="account-card__title"><?php esc_html_e( 'Addresses', 'woocommerce' ); ?></span>
 				<span class="account-card__desc"><?php esc_html_e( 'Manage shipping and billing addresses', 'steel-eshop' ); ?></span>
 			</div>
-			<span class="account-card__arrow material-symbols" aria-hidden="true">arrow_forward</span>
+			<span class="account-card__arrow material-symbols" translate="no" aria-hidden="true">arrow_forward</span>
 		</a>
 
 		<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-account' ) ); ?>" class="account-card">
 			<div class="account-card__icon" aria-hidden="true">
-				<span class="material-symbols">manage_accounts</span>
+				<span class="material-symbols" translate="no">manage_accounts</span>
 			</div>
 			<div class="account-card__info">
 				<span class="account-card__title"><?php esc_html_e( 'Account details', 'woocommerce' ); ?></span>
 				<span class="account-card__desc"><?php esc_html_e( 'Edit name, email and change password', 'steel-eshop' ); ?></span>
 			</div>
-			<span class="account-card__arrow material-symbols" aria-hidden="true">arrow_forward</span>
+			<span class="account-card__arrow material-symbols" translate="no" aria-hidden="true">arrow_forward</span>
 		</a>
 	</div>
 

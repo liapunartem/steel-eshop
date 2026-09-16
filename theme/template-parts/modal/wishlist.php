@@ -7,11 +7,11 @@ defined( 'ABSPATH' ) || exit;
     <div class="modal__body">
         <div class="modal__header">
             <span class="modal__title" id="modal-wishlist-title">
-                <span class="material-symbols material-symbols--filled">favorite</span>
+                <span class="material-symbols material-symbols--filled" translate="no">favorite</span>
                 <?php _e( 'Wishlist', 'steel-eshop' ); ?>
             </span>
             <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Close wishlist', 'steel-eshop' ); ?>">
-                <span class="material-symbols material-symbols--filled">close</span>
+                <span class="material-symbols material-symbols--filled" translate="no">close</span>
             </button>
         </div>
         

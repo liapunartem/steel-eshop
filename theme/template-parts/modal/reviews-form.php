@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="modal__header">
             <span class="modal__title" id="modal-reviews-form-title"><?php _e( 'Leave your review', 'steel-eshop' ); ?></span>
             <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Close review form', 'steel-eshop' ); ?>">
-                <span class="material-symbols material-symbols--filled">close</span>
+                <span class="material-symbols material-symbols--filled" translate="no">close</span>
             </button>
         </div>
         

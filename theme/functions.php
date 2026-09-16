@@ -78,6 +78,7 @@ function steel_enqueue_scripts() {
     
     wp_enqueue_script( 'steel-card', get_template_directory_uri() . '/assets/js/card.js', [], THEME_VERSION, true );
     wp_enqueue_script( 'steel-modal', get_template_directory_uri() . '/assets/js/modal.js', [], THEME_VERSION, true );
+    wp_enqueue_script( 'steel-mobile-menu', get_template_directory_uri() . '/assets/js/mobile-menu.js', ['steel-modal'], THEME_VERSION, true );
     wp_enqueue_script( 'steel-cart', get_template_directory_uri() . '/assets/js/cart.js', [], THEME_VERSION, true );
     wp_localize_script( 'steel-cart', 'stCart', [
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
