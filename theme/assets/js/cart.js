@@ -47,14 +47,40 @@
         return '/wp-admin/admin-ajax.php';
     }
 
-    // 2. Mini-cart quantity change with debouncing
+    // 2. Open mini-cart helper
+    function openMiniCart(triggerBtn = null) {
+        if (typeof window.steelOpenCart === 'function') {
+            window.steelOpenCart(triggerBtn);
+        } else if (typeof window.steelOpenModal === 'function') {
+            window.steelOpenModal('modal-cart', 'no-scroll', triggerBtn);
+        } else {
+            const cartModal = document.getElementById('modal-cart');
+            if (cartModal) {
+                cartModal.classList.add('is-open');
+                cartModal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('no-scroll');
+            }
+        }
+    }
+
+    // 3. Update HTML fragments helper (counters, mini-cart content)
+    function updateFragments(fragments) {
+        if (!fragments || typeof fragments !== 'object') return;
+        Object.entries(fragments).forEach(([selector, html]) => {
+            document.querySelectorAll(selector).forEach((el) => {
+                el.outerHTML = html;
+            });
+        });
+    }
+
+    // 4. Mini-cart quantity change with debouncing
     document.addEventListener('change', (event) => {
-        if (!event.target.matches('.mini_cart_item .qty')) {
+        if (!event.target.matches('.mini_cart_item .qty, .mini-cart__item .qty, .woocommerce-mini-cart-item .qty')) {
             return;
         }
 
         const input = event.target;
-        const item = input.closest('.mini_cart_item');
+        const item = input.closest('.mini_cart_item, .mini-cart__item, .woocommerce-mini-cart-item');
         const removeButton = item?.querySelector('.remove_from_cart_button');
 
         if (!removeButton?.dataset.cart_item_key) return;
@@ -86,7 +112,25 @@
         }, 300);
     });
 
-    // 3. Helper to build FormData for AJAX add to cart
+    // 5. Listen for added_to_cart events (WooCommerce archive loop, catalog, single, etc.)
+    if (window.jQuery) {
+        window.jQuery(document.body).on('added_to_cart', (event, fragments, cartHash, $button) => {
+            if (fragments) {
+                updateFragments(fragments);
+            }
+            const btn = $button && $button.length ? $button[0] : ($button instanceof HTMLElement ? $button : null);
+            openMiniCart(btn);
+        });
+    }
+
+    document.body.addEventListener('added_to_cart', (event) => {
+        if (event.detail?.fragments) {
+            updateFragments(event.detail.fragments);
+        }
+        openMiniCart(event.detail?.button || null);
+    });
+
+    // 6. Helper to build FormData for AJAX add to cart
     function getProductFormData(form, submitBtn) {
         const formData = new FormData(form);
 
@@ -119,7 +163,7 @@
         return formData;
     }
 
-    // 4. Core AJAX Add to Cart submission handler
+    // 7. Core AJAX Add to Cart submission handler (Single product forms)
     async function handleAddToCart(form, submitBtn) {
         if (!form) return;
 
@@ -184,44 +228,31 @@
             }
 
             if (result.success) {
+                const fragments = result.data?.fragments;
+                const cartHash  = result.data?.cart_hash;
+
                 // Update fragments (counters, mini-cart content)
-                if (result.data?.fragments) {
-                    Object.entries(result.data.fragments).forEach(([selector, html]) => {
-                        document.querySelectorAll(selector).forEach((el) => {
-                            el.outerHTML = html;
-                        });
-                    });
+                if (fragments) {
+                    updateFragments(fragments);
                 }
 
                 // Trigger WooCommerce fragment refresh & added_to_cart
                 if (window.jQuery) {
-                    window.jQuery(document.body).trigger('added_to_cart', [result.data?.fragments, result.data?.cart_hash, submitBtn ? window.jQuery(submitBtn) : null]);
+                    window.jQuery(document.body).trigger('added_to_cart', [fragments, cartHash, submitBtn ? window.jQuery(submitBtn) : null]);
                     window.jQuery(document.body).trigger('wc_fragment_refresh');
-                }
-
-                // Dispatch native CustomEvent for any vanilla listeners
-                document.body.dispatchEvent(new CustomEvent('added_to_cart', {
-                    bubbles: true,
-                    detail: {
-                        fragments: result.data?.fragments,
-                        cart_hash: result.data?.cart_hash,
-                        button: submitBtn,
-                    },
-                }));
-
-                // Open mini-cart modal id="modal-cart" instead of notice
-                if (typeof window.steelOpenCart === 'function') {
-                    window.steelOpenCart(submitBtn);
-                } else if (typeof window.steelOpenModal === 'function') {
-                    window.steelOpenModal('modal-cart', 'no-scroll', submitBtn);
                 } else {
-                    const cartModal = document.getElementById('modal-cart');
-                    if (cartModal) {
-                        cartModal.classList.add('is-open');
-                        cartModal.setAttribute('aria-hidden', 'false');
-                        document.body.classList.add('no-scroll');
-                    }
+                    document.body.dispatchEvent(new CustomEvent('added_to_cart', {
+                        bubbles: true,
+                        detail: {
+                            fragments: fragments,
+                            cart_hash: cartHash,
+                            button: submitBtn,
+                        },
+                    }));
                 }
+
+                // Open mini-cart modal
+                openMiniCart(submitBtn);
             } else {
                 const errorHtml = result.data?.notices || `
                     <div class="notices notices--error" role="alert">
@@ -255,7 +286,7 @@
         }
     }
 
-    // 5. Intercept clicks on single add to cart buttons (Capture phase)
+    // 8. Intercept clicks on single add to cart buttons (Capture phase)
     document.addEventListener('click', (event) => {
         const btn = event.target.closest('.single_add_to_cart_button');
         if (!btn) return;
@@ -268,7 +299,7 @@
         handleAddToCart(form, btn);
     }, true);
 
-    // 6. Intercept submit events on form.cart (Capture phase, e.g. Enter key)
+    // 9. Intercept submit events on form.cart (Capture phase, e.g. Enter key)
     document.addEventListener('submit', (event) => {
         const form = event.target.closest('form.cart');
         if (!form) return;

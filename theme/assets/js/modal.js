@@ -56,6 +56,25 @@ function initModal() {
             document.body.classList.remove('no-scroll');
         }
     }
+
+    // Expose programmatic modal methods
+    window.steelOpenModal = function (modalOrId) {
+        const modal = typeof modalOrId === 'string' ? document.getElementById(modalOrId) : modalOrId;
+        if (modal) {
+            openModal(modal);
+        }
+    };
+
+    window.steelCloseModal = function (modalOrId) {
+        const modal = typeof modalOrId === 'string' ? document.getElementById(modalOrId) : modalOrId;
+        if (modal) {
+            closeModal(modal);
+        }
+    };
+
+    window.steelOpenCart = function () {
+        window.steelOpenModal('modal-cart');
+    };
 }
 
 initModal();

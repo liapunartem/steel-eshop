@@ -3,7 +3,7 @@
 Theme Name: Steel Eshop
 
 Author:     Artem Liapun
-Version:    0.1.01
+Version:    0.1.02
 */
 /**
   Нормализация блочной модели
@@ -2940,6 +2940,73 @@ a.added_to_cart.wc-forward {
   border-radius: 50%;
   animation: button-loader-spin 0.6s linear infinite;
   vertical-align: middle;
+}
+
+@media (max-width: 767.98px) {
+  .wp-block-woocommerce-checkout,
+  .wp-block-woocommerce-cart {
+    max-width: 699px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .wc-block-components-sidebar-layout {
+    flex-direction: column;
+  }
+  .wc-block-components-sidebar-layout .wc-block-components-main,
+  .wc-block-components-sidebar-layout .wc-block-components-sidebar {
+    width: 100%;
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .wp-block-woocommerce-checkout.is-loading {
+    flex-direction: column;
+  }
+  .wp-block-woocommerce-checkout.is-loading .wp-block-woocommerce-checkout-fields-block,
+  .wp-block-woocommerce-checkout.is-loading .wp-block-woocommerce-checkout-totals-block {
+    width: 100%;
+    padding-inline: 0;
+  }
+  .wp-block-woocommerce-checkout.is-loading .wp-block-woocommerce-checkout-totals-block {
+    order: 0;
+    margin-bottom: 1.5rem;
+  }
+  .wp-block-woocommerce-checkout.is-loading .wp-block-woocommerce-checkout-fields-block {
+    order: 1;
+  }
+}
+
+.wc-block-checkout__sidebar {
+  transition: transform var(--st-transition-duration), opacity var(--st-transition-duration), top var(--st-transition-duration-2);
+}
+@media (min-width: 1024px) {
+  .wc-block-checkout__sidebar {
+    position: sticky;
+    z-index: 10;
+    height: -moz-fit-content;
+    height: fit-content;
+    top: calc(var(--st-top-header-position) + var(--st-container-padding-x) + 130px);
+  }
+}
+@media (max-width: 1023.98px) {
+  .wc-block-checkout__sidebar {
+    position: static;
+    top: auto;
+    order: 0;
+    margin-bottom: 1.5rem;
+    align-self: stretch;
+  }
+  .wc-block-checkout__sidebar.is-sticky {
+    position: static;
+  }
+}
+@media (max-width: 1023.98px) {
+  .wc-block-checkout__main {
+    order: 1;
+  }
 }
 
 .wc-block-checkout__shipping-method-option.wc-block-checkout__shipping-method-option--selected {

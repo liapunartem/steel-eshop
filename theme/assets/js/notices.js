@@ -167,20 +167,6 @@ function initNotices() {
         }
     };
 
-    // 7. Listen for WooCommerce AJAX add-to-cart events -> open mini-cart modal
-    const initWcAjaxListener = () => {
-        if (window.jQuery) {
-            window.jQuery(document.body).on('added_to_cart', (event, fragments, cart_hash, $button) => {
-                if (typeof window.steelOpenCart === 'function') {
-                    window.steelOpenCart($button && $button.length ? $button[0] : null);
-                } else if (typeof window.steelOpenModal === 'function') {
-                    window.steelOpenModal('modal-cart', 'no-scroll', $button && $button.length ? $button[0] : null);
-                }
-            });
-        }
-    };
-
-    initWcAjaxListener();
 
     // 8. bfcache support: hide stale notices if loaded from cache
     window.addEventListener('pageshow', (event) => {

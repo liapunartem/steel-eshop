@@ -36,9 +36,18 @@ add_action('after_setup_theme', function() {
 });
 
 
+// Completely disable default WooCommerce stylesheets (including block/shortcode render re-enqueues)
+add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+
 // === SCRIPT CONNECTION HOOKS ===
 add_action( 'wp_enqueue_scripts', 'steel_enqueue_style', 30 );
 add_action( 'wp_enqueue_scripts', 'steel_enqueue_scripts', 35);
+add_action( 'wp_footer', function() {
+    wp_dequeue_style( 'woocommerce-layout' );
+    wp_dequeue_style( 'woocommerce-smallscreen' );
+    wp_dequeue_style( 'woocommerce-general' );
+    wp_dequeue_style( 'woocommerce-inline' );
+}, 1 );
 
 // Connecting styles
 function steel_enqueue_style() {
@@ -46,6 +55,10 @@ function steel_enqueue_style() {
     wp_dequeue_style( 'woocommerce-layout' );
     wp_dequeue_style( 'woocommerce-smallscreen' );
     wp_dequeue_style( 'woocommerce-inline' );
+    wp_deregister_style( 'woocommerce-general' );
+    wp_deregister_style( 'woocommerce-layout' );
+    wp_deregister_style( 'woocommerce-smallscreen' );
+    wp_deregister_style( 'woocommerce-inline' );
 
     wp_enqueue_style( 'Roboto-font', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap', [], null );
     wp_enqueue_style( 'material-symbols', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200', [], null );
@@ -79,7 +92,7 @@ function steel_enqueue_scripts() {
     wp_enqueue_script( 'steel-card', get_template_directory_uri() . '/assets/js/card.js', [], THEME_VERSION, true );
     wp_enqueue_script( 'steel-modal', get_template_directory_uri() . '/assets/js/modal.js', [], THEME_VERSION, true );
     wp_enqueue_script( 'steel-mobile-menu', get_template_directory_uri() . '/assets/js/mobile-menu.js', ['steel-modal'], THEME_VERSION, true );
-    wp_enqueue_script( 'steel-cart', get_template_directory_uri() . '/assets/js/cart.js', [], THEME_VERSION, true );
+    wp_enqueue_script( 'steel-cart', get_template_directory_uri() . '/assets/js/cart.js', ['steel-modal'], THEME_VERSION, true );
     wp_localize_script( 'steel-cart', 'stCart', [
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
         'nonce'   => wp_create_nonce( 'steel_cart_nonce' ),
