@@ -34,17 +34,49 @@
     }
 
     &__rating {
-        @include flex-center;
-        @include fluid-text(16, 18);
+        display: flex;
+        align-items: center;
+        gap: rem(6);
+    }
 
-        &-title {
-            margin-right: rem(10);
+    &__stars {
+        color: var(--st-c-accent);
+        width: auto;
+        position: relative;
+        display: inline-block;
+        height: 1em;
+        overflow: hidden;
+        line-height: 1;
+        font-size: rem(16);
+        letter-spacing: 1px;
+
+        &::before,
+        span::before {
+            content: "★★★★★";
+            letter-spacing: 1px;
         }
 
-        .material-symbols {
-            color: var(--st-c-accent);
-            margin-top: rem(-3);
+        &::before {
+            color: var(--st-c-gray);
         }
+
+        span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            overflow: hidden;
+
+            &::before {
+                color: inherit;
+            }
+        }
+    }
+
+    &__rating-count {
+        font-size: rem(14);
+        color: var(--st-c-gray-2);
+        line-height: 1;
     }
 
     &__stock {

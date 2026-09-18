@@ -21,6 +21,9 @@ $stock_text = $product->get_availability()['availability'];
 $stock_class = $product->get_availability()['class'];
 
 $is_in_wishlist = steel_is_in_wishlist( $product->get_id() );
+$average_rating = (float) $product->get_average_rating();
+$rating_count   = $product->get_rating_count();
+$rating_percent = ( $average_rating / 5 ) * 100;
 
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'container', $product ); ?>>
@@ -122,15 +125,10 @@ $is_in_wishlist = steel_is_in_wishlist( $product->get_id() );
 				
 				<div class="product-summary__flex-wrap">
 					<div class="product-summary__rating">
-						<span class="product-summary__rating-title">
-							<?php esc_html_e( 'Reviews:', 'steel-eshop' ); ?>
-						</span>
-
-						<span class="material-symbols material-symbols--filled" translate="no">star</span>
-						<?php echo $product->get_average_rating(); ?>
-						/
-						<?php echo $product->get_rating_count(); ?>
-						
+						<div class="product-summary__stars" role="img" aria-label="<?php echo esc_attr( sprintf( __( 'Rated %s out of 5', 'steel-eshop' ), $average_rating ) ); ?>">
+							<span style="width: <?php echo esc_attr( $rating_percent ); ?>%;"></span>
+						</div>
+						<span class="product-summary__rating-count">(<?php echo esc_html( $rating_count ); ?>)</span>
 					</div>
 					
 					<div id="js-availability-display" class="product-summary__stock">

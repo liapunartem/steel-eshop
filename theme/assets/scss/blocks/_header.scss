@@ -150,8 +150,16 @@
             font-size: rem(10);
     
             border-radius: 100%;
-            background: red;
+            background: var(--st-c-red);
         }
     }
 
 }
+
+.woocommerce-cart,
+.woocommerce-checkout {
+    .header .cart-button {
+        display: none;
+    }
+}
+

@@ -24,7 +24,7 @@
         }
         
         @include tablet-above {
-            position: relative;
+            position: relative !important;
             width: 100% !important;
             transform: none !important;
             max-height: calc(
