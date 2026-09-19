@@ -68,7 +68,7 @@
             <div class="container header__inner">
 
                 <div class="header__categories hidden-tablet">
-                    <button class="header__categories-button <?php if ( function_exists('is_shop') && is_shop() ): echo 'sidebar-toggle-button'; endif; ?>" aria-label="<?php esc_attr_e( 'Toggle product catalog', 'steel-eshop' ); ?>">
+                    <button class="header__categories-button <?php if ( is_front_page() ): echo 'sidebar-toggle-button'; endif; ?>" aria-label="<?php esc_attr_e( 'Toggle product catalog', 'steel-eshop' ); ?>">
                         <div class="header__categories-button-title">
                             <span class="material-symbols" translate="no">widgets</span>
                             <?php _e( 'Product catalog', 'steel-eshop' ); ?>

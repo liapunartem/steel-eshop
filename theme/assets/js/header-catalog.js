@@ -16,13 +16,15 @@ function toggleHeaderCategories(event) {
     headerCategoriesBady.classList.toggle('is-open');
 }
 
-headerCategoriesBtn.addEventListener('click', toggleHeaderCategories);
+if (headerCategoriesBtn && headerCategoriesBady) {
+    headerCategoriesBtn.addEventListener('click', toggleHeaderCategories);
 
-document.addEventListener('click', function(event) {
-    const clickInsideMenu = headerCategoriesBady.contains(event.target);
-    const clickOnButton = headerCategoriesBtn.contains(event.target);
+    document.addEventListener('click', function(event) {
+        const clickInsideMenu = headerCategoriesBady.contains(event.target);
+        const clickOnButton = headerCategoriesBtn.contains(event.target);
 
-    if (!clickInsideMenu && !clickOnButton) {
-        closeHeaderCategories();
-    }
-});
+        if (!clickInsideMenu && !clickOnButton) {
+            closeHeaderCategories();
+        }
+    });
+}

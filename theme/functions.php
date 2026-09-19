@@ -98,7 +98,6 @@ function steel_enqueue_scripts() {
         'nonce'   => wp_create_nonce( 'steel_cart_nonce' ),
     ] );
 
-    wp_enqueue_script( 'steel-sidebar', get_template_directory_uri() . '/assets/js/sidebar.js', [], THEME_VERSION, true );
     wp_enqueue_script( 'steel-footer', get_template_directory_uri() . '/assets/js/footer.js', [], THEME_VERSION, true );
     wp_enqueue_script( 'steel-scroll', get_template_directory_uri() . '/assets/js/scroll.js', [], THEME_VERSION, true );
     wp_enqueue_script( 'steel-tabs', get_template_directory_uri() . '/assets/js/tabs.js', [], THEME_VERSION, true );
@@ -122,7 +121,9 @@ function steel_enqueue_scripts() {
         ],
 	] );
 
-    if ( ! is_front_page() ) {
+    if ( is_front_page() ) {
+        wp_enqueue_script( 'steel-sidebar', get_template_directory_uri() . '/assets/js/sidebar.js', [], THEME_VERSION, true );
+    } else {
         wp_enqueue_script( 'steel-header-catalog', get_template_directory_uri() . '/assets/js/header-catalog.js', [], THEME_VERSION, true );
     }
 }
