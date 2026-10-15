@@ -18,11 +18,11 @@ add_action( 'init', function () {
 add_filter( 'woocommerce_breadcrumb_defaults', function ( $defaults ) {
     return [
         'delimiter'   => '',
-        'wrap_before' => '<nav class="breadcrumb scroll-shadow" aria-label="' . esc_attr__( 'Breadcrumbs', 'steel-eshop' ) . '"><div class="scroll-shadow__left"></div><ol class="breadcrumb__list" data-check-scroll="horizontal">',
+        'wrap_before' => '<nav class="breadcrumb scroll-shadow" aria-label="' . esc_attr__( 'Хлібні крихти', 'steel-eshop' ) . '"><div class="scroll-shadow__left"></div><ol class="breadcrumb__list" data-check-scroll="horizontal">',
         'wrap_after'  => '</ol><div class="scroll-shadow__right is-visible"></div></nav>',
         'before'      => '<li class="breadcrumb__item">',
         'after'       => '</li>',
-        'home'        => __( 'Home', 'steel-eshop' ),
+        'home'        => __( 'Головна', 'steel-eshop' ),
     ];
 });
 
@@ -43,11 +43,11 @@ add_filter( 'woocommerce_get_breadcrumb', function ( $crumbs ) {
 
 add_filter( 'woocommerce_catalog_orderby', function( $defaults ) {
     return [
-        'menu_order' => __( 'Default', 'steel-eshop' ),
-        'popularity' => __( 'Popularity', 'steel-eshop' ),
-        'date'       => __( 'Latest', 'steel-eshop' ),
-        'price'      => __( 'Price: low to high', 'steel-eshop' ),
-        'price-desc' => __( 'Price: high to low', 'steel-eshop' ),
+        'menu_order' => __( 'За замовчуванням', 'steel-eshop' ),
+        'popularity' => __( 'За популярністю', 'steel-eshop' ),
+        'date'       => __( 'Новинки', 'steel-eshop' ),
+        'price'      => __( 'Від дешевих до дорогих', 'steel-eshop' ),
+        'price-desc' => __( 'Від дорогих до дешевих', 'steel-eshop' ),
     ];
 });
 
@@ -90,7 +90,7 @@ function steel_mini_cart_quantity_input( $html, $cart_item, $cart_item_key ) {
  * Add minus button before quantity input.
  */
 add_action( 'woocommerce_before_quantity_input_field', function () {
-    echo '<button type="button" class="quantity__button quantity__button--minus" aria-label="' . esc_attr__( 'Decrease quantity', 'steel-eshop' ) . '">−</button>';
+    echo '<button type="button" class="quantity__button quantity__button--minus" aria-label="' . esc_attr__( 'Зменшити кількість', 'steel-eshop' ) . '">−</button>';
 });
 
 
@@ -98,7 +98,7 @@ add_action( 'woocommerce_before_quantity_input_field', function () {
  * Add plus button after quantity input.
  */
 add_action('woocommerce_after_quantity_input_field', function () {
-    echo '<button type="button" class="quantity__button quantity__button--plus" aria-label="' . esc_attr__( 'Increase quantity', 'steel-eshop' ) . '">+</button>';
+    echo '<button type="button" class="quantity__button quantity__button--plus" aria-label="' . esc_attr__( 'Збільшити кількість', 'steel-eshop' ) . '">+</button>';
 });
 
 
@@ -187,7 +187,7 @@ function steel_ajax_add_to_cart() {
             ob_clean();
         }
         wp_send_json_error( [
-            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Security check failed. Please refresh the page.', 'steel-eshop' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>',
+            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Помилка безпеки. Будь ласка, оновіть сторінку.', 'steel-eshop' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Закрити сповіщення', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>',
         ] );
     }
 
@@ -216,7 +216,7 @@ function steel_ajax_add_to_cart() {
             ob_clean();
         }
         wp_send_json_error( [
-            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Product not found.', 'woocommerce' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>',
+            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Товар не знайдено.', 'steel-eshop' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Закрити сповіщення', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>',
         ] );
     }
 
@@ -226,7 +226,7 @@ function steel_ajax_add_to_cart() {
             ob_clean();
         }
         wp_send_json_error( [
-            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Please select some product options before adding this product to your cart.', 'woocommerce' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>',
+            'notices' => '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Будь ласка, оберіть параметри товару перед додаванням у кошик.', 'steel-eshop' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Закрити сповіщення', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>',
         ] );
     }
 
@@ -317,7 +317,7 @@ function steel_ajax_add_to_cart() {
     wc_clear_notices();
 
     if ( empty( $notices_html ) ) {
-        $notices_html = '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Could not add product to cart.', 'woocommerce' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Close notice', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>';
+        $notices_html = '<div class="notices notices--error" role="alert"><div class="notices__content">' . esc_html__( 'Не вдалося додати товар у кошик.', 'steel-eshop' ) . '</div><button type="button" class="close-notice-btn" aria-label="' . esc_attr__( 'Закрити сповіщення', 'steel-eshop' ) . '"><span class="material-symbols" translate="no" aria-hidden="true">close</span></button></div>';
     }
 
     if ( ob_get_length() ) {
@@ -328,3 +328,107 @@ function steel_ajax_add_to_cart() {
         'notices' => $notices_html,
     ] );
 }
+
+/**
+ * Remove billing address from My Account addresses.
+ */
+add_filter( 'woocommerce_my_account_get_addresses', 'steel_remove_billing_address_from_my_account', 10, 2 );
+function steel_remove_billing_address_from_my_account( $addresses, $customer_id ) {
+    unset( $addresses['billing'] );
+    if ( ! isset( $addresses['shipping'] ) ) {
+        $addresses['shipping'] = __( 'Адреса доставки', 'steel-eshop' );
+    }
+    return $addresses;
+}
+
+/**
+ * Redirect /my-account/edit-address/billing to /my-account/edit-address/shipping.
+ */
+add_action( 'template_redirect', 'steel_redirect_billing_address_edit' );
+function steel_redirect_billing_address_edit() {
+    if ( is_account_page() && is_wc_endpoint_url( 'edit-address' ) ) {
+        global $wp;
+        if ( isset( $wp->query_vars['edit-address'] ) && 'billing' === $wp->query_vars['edit-address'] ) {
+            wp_safe_redirect( wc_get_endpoint_url( 'edit-address', 'shipping' ) );
+            exit;
+        }
+    }
+}
+
+/**
+ * Update My Account addresses description.
+ */
+add_filter( 'woocommerce_my_account_my_address_description', function() {
+    return esc_html__( 'Ця адреса буде використовуватися за замовчуванням на сторінці оформлення замовлення.', 'steel-eshop' );
+} );
+
+/**
+ * Rename and translate account menu items into Ukrainian.
+ */
+add_filter( 'woocommerce_account_menu_items', function( $items ) {
+    $translated_items = [
+        'dashboard'       => __( 'Панель керування', 'steel-eshop' ),
+        'orders'          => __( 'Замовлення', 'steel-eshop' ),
+        'downloads'       => __( 'Завантаження', 'steel-eshop' ),
+        'edit-address'    => __( 'Адреса доставки', 'steel-eshop' ),
+        'payment-methods' => __( 'Способи оплати', 'steel-eshop' ),
+        'edit-account'    => __( 'Деталі облікового запису', 'steel-eshop' ),
+        'customer-logout' => __( 'Вийти', 'steel-eshop' ),
+    ];
+
+    foreach ( $translated_items as $endpoint => $translated_label ) {
+        if ( isset( $items[ $endpoint ] ) ) {
+            $items[ $endpoint ] = $translated_label;
+        }
+    }
+
+    return $items;
+}, 20 );
+
+/**
+ * Localize product data tabs into Ukrainian.
+ */
+add_filter( 'woocommerce_product_tabs', function( $tabs ) {
+    if ( isset( $tabs['description'] ) ) {
+        $tabs['description']['title'] = __( 'Опис', 'steel-eshop' );
+    }
+    if ( isset( $tabs['additional_information'] ) ) {
+        $tabs['additional_information']['title'] = __( 'Додаткова інформація', 'steel-eshop' );
+    }
+    if ( isset( $tabs['reviews'] ) ) {
+        global $product;
+        $count = $product ? (int) $product->get_review_count() : 0;
+        $tabs['reviews']['title'] = sprintf( __( 'Відгуки (%d)', 'steel-eshop' ), $count );
+    }
+    return $tabs;
+}, 98 );
+
+/**
+ * Localize account orders table columns.
+ */
+add_filter( 'woocommerce_account_orders_columns', function( $columns ) {
+    return [
+        'order-number'  => __( 'Замовлення', 'steel-eshop' ),
+        'order-date'    => __( 'Дата', 'steel-eshop' ),
+        'order-status'  => __( 'Статус', 'steel-eshop' ),
+        'order-total'   => __( 'Сума', 'steel-eshop' ),
+        'order-actions' => __( 'Дії', 'steel-eshop' ),
+    ];
+} );
+
+/**
+ * Localize account orders table actions.
+ */
+add_filter( 'woocommerce_my_account_my_orders_actions', function( $actions, $order ) {
+    if ( isset( $actions['pay'] ) ) {
+        $actions['pay']['name'] = __( 'Оплатити', 'steel-eshop' );
+    }
+    if ( isset( $actions['view'] ) ) {
+        $actions['view']['name'] = __( 'Переглянути', 'steel-eshop' );
+    }
+    if ( isset( $actions['cancel'] ) ) {
+        $actions['cancel']['name'] = __( 'Скасувати', 'steel-eshop' );
+    }
+    return $actions;
+}, 10, 2 );
+

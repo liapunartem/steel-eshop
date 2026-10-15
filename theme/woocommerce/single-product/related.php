@@ -27,7 +27,7 @@ if ( $related_products ) {
 		[
 			'products' => $related_products,
 			'section_class' => 'related-products',
-			'section_title' => __( 'Related products', 'steel-eshop' ),
+			'section_title' => __( 'Схожі товари', 'steel-eshop' ),
 		]
 	);
 

@@ -27,7 +27,7 @@ $rating_percent = ( $average_rating / 5 ) * 100;
         </span>
     <?php endif; ?>
 
-    <button type="button" class="product-card__wishlist-button wishlist-button <?php echo $is_in_wishlist ? 'is-active' : ''; ?>" data-product-id="<?php echo esc_attr( $product_id ); ?>" aria-label="<?php echo esc_attr( sprintf( $is_in_wishlist ? __( 'Remove %s from wishlist', 'steel-eshop' ) : __( 'Add %s to wishlist', 'steel-eshop' ), $product->get_name() ) ); ?>">
+    <button type="button" class="product-card__wishlist-button wishlist-button <?php echo $is_in_wishlist ? 'is-active' : ''; ?>" data-product-id="<?php echo esc_attr( $product_id ); ?>" aria-label="<?php echo esc_attr( sprintf( $is_in_wishlist ? __( 'Видалити %s зі списку бажань', 'steel-eshop' ) : __( 'Додати %s до списку бажань', 'steel-eshop' ), $product->get_name() ) ); ?>">
         <span class="material-symbols" translate="no">favorite</span>
     </button>
 
@@ -58,7 +58,7 @@ $rating_percent = ( $average_rating / 5 ) * 100;
         </h3>
 
         <div class="product-card__rating">
-            <div class="product-card__stars" role="img" aria-label="<?php echo esc_attr( sprintf( __( 'Rated %s out of 5', 'steel-eshop' ), $average_rating ) ); ?>">
+            <div class="product-card__stars" role="img" aria-label="<?php echo esc_attr( sprintf( __( 'Оцінка %s з 5', 'steel-eshop' ), $average_rating ) ); ?>">
                 <span style="width: <?php echo esc_attr( $rating_percent ); ?>%;"></span>
             </div>
             <span class="product-card__rating-count">(<?php echo esc_html( $rating_count ); ?>)</span>

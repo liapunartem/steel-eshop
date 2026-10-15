@@ -9,7 +9,7 @@ function steel_the_popular_products_carousel( $type = 'sales', $count = 10 ) {
         [
             'products' => steel_get_popular_products( $type, $count ),
             'section_class' => 'popular-products',
-            'section_title' => __( 'Popular products', 'steel-eshop' ),
+            'section_title' => __( 'Популярні товари', 'steel-eshop' ),
         ]
     );
 }
@@ -21,7 +21,7 @@ function steel_the_new_product_carousel( $count = 10 ) {
         [
             'products' => steel_get_new_products( $count ),
             'section_class' => 'new-products',
-            'section_title' => __( 'New products', 'steel-eshop' ),
+            'section_title' => __( 'Новинки', 'steel-eshop' ),
         ]
     );
 }
@@ -33,7 +33,7 @@ function steel_the_featured_products_carousel( $count = 10 ) {
         [
             'products' => steel_get_featured_products( $count ),
             'section_class' => 'featured-products',
-            'section_title' => __( 'Featured products', 'steel-eshop' ),
+            'section_title' => __( 'Рекомендовані товари', 'steel-eshop' ),
         ]
     );
 }
@@ -439,14 +439,14 @@ add_action( 'wp_ajax_nopriv_steel_toggle_wishlist', 'steel_toggle_wishlist_cb' )
 
 function steel_toggle_wishlist_cb() {
 	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'steel_wishlist_nonce' ) ) {
-		wp_send_json_error( array( 'message' => __( 'Security verification failed.', 'steel-eshop' ) ) );
+		wp_send_json_error( array( 'message' => __( 'Помилка перевірки безпеки.', 'steel-eshop' ) ) );
 	}
 
 	$product_id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
 	$product    = wc_get_product( $product_id );
 
 	if ( ! $product || 'publish' !== $product->get_status() ) {
-		wp_send_json_error( array( 'message' => __( 'Invalid or unavailable product.', 'steel-eshop' ) ) );
+		wp_send_json_error( array( 'message' => __( 'Недійсний або недоступний товар.', 'steel-eshop' ) ) );
 	}
 
 	$wishlist = steel_get_wishlist_ids();
@@ -454,11 +454,11 @@ function steel_toggle_wishlist_cb() {
 	if ( in_array( $product_id, $wishlist, true ) ) {
 		$wishlist = array_diff( $wishlist, array( $product_id ) );
 		$action   = 'removed';
-		$message  = __( 'Product removed from wishlist', 'steel-eshop' );
+		$message  = __( 'Товар видалено зі списку бажань', 'steel-eshop' );
 	} else {
 		$wishlist[] = $product_id;
 		$action     = 'added';
-		$message    = __( 'Product added to wishlist', 'steel-eshop' );
+		$message    = __( 'Товар додано до списку бажань', 'steel-eshop' );
 	}
 
 	$wishlist = array_values( array_unique( $wishlist ) );
@@ -478,7 +478,7 @@ add_action( 'wp_ajax_nopriv_steel_get_wishlist_html_ajax', 'steel_get_wishlist_h
 
 function steel_get_wishlist_html_ajax_cb() {
 	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'steel_wishlist_nonce' ) ) {
-		wp_send_json_error( array( 'message' => __( 'Security error', 'steel-eshop' ) ) );
+		wp_send_json_error( array( 'message' => __( 'Помилка безпеки', 'steel-eshop' ) ) );
 	}
 
 	wp_send_json_success( array(
@@ -519,7 +519,7 @@ function steel_get_wishlist_html() {
 							role="button" 
 							href="#" 
 							class="wishlist__remove-button remove" 
-							aria-label="<?php echo esc_attr( sprintf( __( 'Remove %s from wishlist', 'steel-eshop' ), wp_strip_all_tags( $product_name ) ) ); ?>" 
+							aria-label="<?php echo esc_attr( sprintf( __( 'Видалити %s зі списку бажань', 'steel-eshop' ), wp_strip_all_tags( $product_name ) ) ); ?>" 
 							data-product_id="<?php echo esc_attr( $product_id ); ?>"
 						>
                             <div class="material-symbols" translate="no">delete</div>
@@ -563,7 +563,7 @@ function steel_get_wishlist_html() {
 		<?php else : ?>
 
 			<p class="wishlist__empty-message">
-				<?php esc_html_e( 'No products in the wishlist.', 'steel-eshop' ); ?>
+				<?php esc_html_e( 'У списку бажань немає товарів.', 'steel-eshop' ); ?>
 			</p>
 
 		<?php endif; ?>

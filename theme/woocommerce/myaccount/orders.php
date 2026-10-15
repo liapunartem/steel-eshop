@@ -50,8 +50,8 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 									<?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
 
 								<?php elseif ( $is_order_number ) : ?>
-									<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>" class="account-table__order-link" aria-label="<?php echo esc_attr( sprintf( __( 'View order number %s', 'woocommerce' ), $order->get_order_number() ) ); ?>">
-										<?php echo esc_html( _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number() ); ?>
+									<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>" class="account-table__order-link" aria-label="<?php echo esc_attr( sprintf( __( 'Переглянути замовлення номер %s', 'steel-eshop' ), $order->get_order_number() ) ); ?>">
+										<?php echo esc_html( _x( '#', 'hash before order number', 'steel-eshop' ) . $order->get_order_number() ); ?>
 									</a>
 
 								<?php elseif ( 'order-date' === $column_id ) : ?>
@@ -67,7 +67,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 								<?php elseif ( 'order-total' === $column_id ) : ?>
 									<span class="account-table__total">
 										<?php
-										echo wp_kses_post( sprintf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count ) );
+										echo wp_kses_post( sprintf( _n( '%1$s за %2$s товар', '%1$s за %2$s товари', $item_count, 'steel-eshop' ), $order->get_formatted_order_total(), $item_count ) );
 										?>
 									</span>
 
@@ -79,7 +79,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 										if ( ! empty( $actions ) ) {
 											foreach ( $actions as $key => $action ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 												$action_aria_label = empty( $action['aria-label'] )
-													? sprintf( __( '%1$s order number %2$s', 'woocommerce' ), $action['name'], $order->get_order_number() )
+													? sprintf( __( '%1$s замовлення номер %2$s', 'steel-eshop' ), $action['name'], $order->get_order_number() )
 													: $action['aria-label'];
 
 												echo '<a href="' . esc_url( $action['url'] ) . '" class="button button--transparent button--small account-table__action ' . sanitize_html_class( $key ) . '" aria-label="' . esc_attr( $action_aria_label ) . '">' . esc_html( $action['name'] ) . '</a>';
@@ -106,20 +106,20 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 	<?php do_action( 'woocommerce_before_account_orders_pagination' ); ?>
 
 	<?php if ( 1 < $customer_orders->max_num_pages ) : ?>
-		<nav class="account-orders__pagination pagination" aria-label="<?php esc_attr_e( 'Orders navigation', 'steel-eshop' ); ?>">
+		<nav class="account-orders__pagination pagination" aria-label="<?php esc_attr_e( 'Навігація по замовленнях', 'steel-eshop' ); ?>">
 			<?php if ( 1 !== $current_page ) : ?>
 				<a class="button button--transparent button--small pagination__prev" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>">
-					&larr; <?php esc_html_e( 'Previous', 'woocommerce' ); ?>
+					&larr; <?php esc_html_e( 'Назад', 'steel-eshop' ); ?>
 				</a>
 			<?php endif; ?>
 
 			<span class="pagination__current">
-				<?php printf( esc_html__( 'Page %1$s of %2$s', 'steel-eshop' ), esc_html( $current_page ), esc_html( $customer_orders->max_num_pages ) ); ?>
+				<?php printf( esc_html__( 'Сторінка %1$s з %2$s', 'steel-eshop' ), esc_html( $current_page ), esc_html( $customer_orders->max_num_pages ) ); ?>
 			</span>
 
 			<?php if ( intval( $customer_orders->max_num_pages ) !== $current_page ) : ?>
 				<a class="button button--transparent button--small pagination__next" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>">
-					<?php esc_html_e( 'Next', 'woocommerce' ); ?> &rarr;
+					<?php esc_html_e( 'Вперед', 'steel-eshop' ); ?> &rarr;
 				</a>
 			<?php endif; ?>
 		</nav>
@@ -131,10 +131,10 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 		<div class="account-empty__icon" aria-hidden="true">
 			<span class="material-symbols" translate="no">shopping_bag</span>
 		</div>
-		<h3 class="account-empty__title"><?php esc_html_e( 'No orders yet', 'steel-eshop' ); ?></h3>
-		<p class="account-empty__text"><?php esc_html_e( 'You have not placed any orders yet. Discover our catalog and find what you need!', 'steel-eshop' ); ?></p>
+		<h3 class="account-empty__title"><?php esc_html_e( 'Замовлень ще немає', 'steel-eshop' ); ?></h3>
+		<p class="account-empty__text"><?php esc_html_e( 'Ви ще не зробили жодного замовлення. Перегляньте наш каталог і знайдіть те, що вам потрібно!', 'steel-eshop' ); ?></p>
 		<a class="button account-empty__button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php esc_html_e( 'Browse products', 'woocommerce' ); ?>
+			<?php esc_html_e( 'Перейти до каталогу', 'steel-eshop' ); ?>
 		</a>
 	</div>
 

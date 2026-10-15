@@ -8,9 +8,9 @@ defined( 'ABSPATH' ) || exit;
         <div class="modal__header">
             <span class="modal__title" id="modal-wishlist-title">
                 <span class="material-symbols material-symbols--filled" translate="no">favorite</span>
-                <?php _e( 'Wishlist', 'steel-eshop' ); ?>
+                <?php esc_html_e( 'Список бажань', 'steel-eshop' ); ?>
             </span>
-            <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Close wishlist', 'steel-eshop' ); ?>">
+            <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Закрити список бажань', 'steel-eshop' ); ?>">
                 <span class="material-symbols material-symbols--filled" translate="no">close</span>
             </button>
         </div>

@@ -13,21 +13,18 @@ defined( 'ABSPATH' ) || exit;
 
 $customer_id = get_current_user_id();
 
-if ( ! wc_ship_to_billing_address_only() && wc_shipping_enabled() ) {
+if ( wc_shipping_enabled() ) {
 	$get_addresses = apply_filters(
 		'woocommerce_my_account_get_addresses',
 		[
-			'billing'  => __( 'Billing address', 'woocommerce' ),
-			'shipping' => __( 'Shipping address', 'woocommerce' ),
+			'shipping' => __( 'Адреса доставки', 'steel-eshop' ),
 		],
 		$customer_id
 	);
 } else {
 	$get_addresses = apply_filters(
 		'woocommerce_my_account_get_addresses',
-		[
-			'billing' => __( 'Billing address', 'woocommerce' ),
-		],
+		[],
 		$customer_id
 	);
 }
@@ -38,7 +35,7 @@ $col    = 1;
 
 <div class="account-addresses">
 	<p class="account-addresses__intro">
-		<?php echo apply_filters( 'woocommerce_my_account_my_address_description', esc_html__( 'The following addresses will be used on the checkout page by default.', 'woocommerce' ) ); ?>
+		<?php echo apply_filters( 'woocommerce_my_account_my_address_description', esc_html__( 'Ця адреса буде використовуватися за замовчуванням на сторінці оформлення замовлення.', 'steel-eshop' ) ); ?>
 	</p>
 
 	<div class="account-addresses__grid u-columns woocommerce-Addresses col2-set addresses">
@@ -61,7 +58,7 @@ $col    = 1;
 							<?php
 							printf(
 								/* translators: %s: Address title */
-								$address ? esc_html__( 'Edit', 'woocommerce' ) : esc_html__( 'Add', 'woocommerce' )
+								$address ? esc_html__( 'Редагувати', 'steel-eshop' ) : esc_html__( 'Додати', 'steel-eshop' )
 							);
 							?>
 						</span>
@@ -74,7 +71,7 @@ $col    = 1;
 						if ( $address ) {
 							echo wp_kses_post( $address );
 						} else {
-							echo '<span class="account-address-card__empty">' . esc_html__( 'You have not set up this type of address yet.', 'woocommerce' ) . '</span>';
+							echo '<span class="account-address-card__empty">' . esc_html__( 'Ви ще не налаштували цей тип адреси.', 'steel-eshop' ) . '</span>';
 						}
 						?>
 					</address>

@@ -20,7 +20,7 @@ get_header(); ?>
             </article>
         <?php endwhile; ?>
     <?php else : ?>
-        <p><?php esc_html_e( 'Nothing found.', 'steel-eshop' ); ?></p>
+        <p><?php esc_html_e( 'Нічого не знайдено.', 'steel-eshop' ); ?></p>
     <?php endif; ?>
 </main>
 

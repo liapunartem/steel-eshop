@@ -8,9 +8,9 @@ defined( 'ABSPATH' ) || exit;
         <div class="modal__header">
             <span class="modal__title" id="modal-cart-title">
                 <span class="material-symbols material-symbols--filled" translate="no">shopping_cart</span>
-                <?php _e( 'Cart', 'steel-eshop' ); ?>
+                <?php esc_html_e( 'Кошик', 'steel-eshop' ); ?>
             </span>
-            <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Close cart', 'steel-eshop' ); ?>">
+            <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Закрити кошик', 'steel-eshop' ); ?>">
                 <span class="material-symbols material-symbols--filled" translate="no">close</span>
             </button>
         </div>

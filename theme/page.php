@@ -10,7 +10,7 @@
 			<h1><?php the_title() ?></h1>
 			<?php the_content(); ?>
 		<?php endwhile; else: ?>
-			<h1><?php _e( 'Nothing Found', 'steel-eshop' ) ?></h1>
+			<h1><?php esc_html_e( 'Нічого не знайдено', 'steel-eshop' ); ?></h1>
 		<?php endif; ?>
 	</div>
 </main>

@@ -5,7 +5,7 @@
 
     <div class="product-filters__body modal__body">
         <div class="modal__header visible-tablet">
-            <span class="modal__title"><?php _e( 'Filters', 'steel-eshop' ) ?></span>
+            <span class="modal__title"><?php esc_html_e( 'Фільтри', 'steel-eshop' ); ?></span>
             <button class="modal__close-btn">
                 <span class="material-symbols material-symbols--filled" translate="no">close</span>
             </button>

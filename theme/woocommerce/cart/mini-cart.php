@@ -42,11 +42,11 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 						sprintf(
 							'<a role="button" href="%s" class="mini-cart__remove-button remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s" data-success_message="%s"><div class="material-symbols" translate="no">delete</div></a>',
 							esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
-							esc_attr( sprintf( __( 'Remove %s from cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) ),
+							esc_attr( sprintf( __( 'Видалити %s з кошика', 'steel-eshop' ), wp_strip_all_tags( $product_name ) ) ),
 							esc_attr( $product_id ),
 							esc_attr( $cart_item_key ),
 							esc_attr( $_product->get_sku() ),
-							esc_attr( sprintf( __( '&ldquo;%s&rdquo; has been removed from your cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) )
+							esc_attr( sprintf( __( '&ldquo;%s&rdquo; видалено з вашого кошика', 'steel-eshop' ), wp_strip_all_tags( $product_name ) ) )
 						),
 						$cart_item_key
 					);
@@ -108,8 +108,8 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 	<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
 	<div class="mini-cart__buttons">
-		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="button button--transparent"><?php _e( 'View cart', 'steel-eshop' ); ?></a>
-		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="button"><?php _e( 'Ordering', 'steel-eshop' ); ?></a>
+		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="button button--transparent"><?php esc_html_e( 'Переглянути кошик', 'steel-eshop' ); ?></a>
+		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="button"><?php esc_html_e( 'Оформити замовлення', 'steel-eshop' ); ?></a>
 	</div>
 
 	<?php do_action( 'woocommerce_widget_shopping_cart_after_buttons' ); ?>
@@ -117,7 +117,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 <?php else : ?>
 
 	<p class="mini-cart__empty-message woocommerce-mini-cart__empty-message">
-		<?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?>
+		<?php esc_html_e( 'У кошику немає товарів.', 'steel-eshop' ); ?>
 	</p>
 
 <?php endif; ?>

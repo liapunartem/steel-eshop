@@ -17,10 +17,10 @@ if ( empty( $products ) ) {
 
             <!-- navigation -->
             <div class="swiper__buttons-wrap">
-                <button class="swiper__button swiper__button--prev button" aria-label="<?php esc_attr_e( 'Previous products', 'steel-eshop' ); ?>">
+                <button class="swiper__button swiper__button--prev button" aria-label="<?php esc_attr_e( 'Попередні товари', 'steel-eshop' ); ?>">
                     <span class="material-symbols" translate="no">keyboard_arrow_left</span>
                 </button>
-                <button class="swiper__button swiper__button--next button" aria-label="<?php esc_attr_e( 'Next products', 'steel-eshop' ); ?>">
+                <button class="swiper__button swiper__button--next button" aria-label="<?php esc_attr_e( 'Наступні товари', 'steel-eshop' ); ?>">
                     <span class="material-symbols" translate="no">keyboard_arrow_right</span>
                 </button>
             </div>

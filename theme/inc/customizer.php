@@ -24,7 +24,7 @@ function steel_remove_default_customizer_settings( WP_Customize_Manager $wp_cust
 
 function steel_add_customizer_settings( WP_Customize_Manager $wp_customize ) {
     $wp_customize->add_section( 'header_and_footer',[
-        'title' => __( 'Header and footer', 'steel-eshop' ),
+        'title' => __( 'Шапка та підвал', 'steel-eshop' ),
         'priority' => 10,
     ]);
     
@@ -33,10 +33,10 @@ function steel_add_customizer_settings( WP_Customize_Manager $wp_customize ) {
         'sanitize_callback' => 'wp_kses_post',
     ] );
     $wp_customize->add_control( 'header_work_schedule', [
-        'label'       => __( 'Work schedule in the header', 'steel-eshop' ),
+        'label'       => __( 'Графік роботи в шапці', 'steel-eshop' ),
         'section'     => 'header_and_footer',
         'type'        => 'textarea',
-        'description' => __( 'Valid text HTML markup', 'steel-eshop' ),
+        'description' => __( 'Дозволена HTML-розмітка', 'steel-eshop' ),
     ]);
 
     $wp_customize->add_setting( 'footer_work_schedule', [
@@ -44,10 +44,10 @@ function steel_add_customizer_settings( WP_Customize_Manager $wp_customize ) {
         'sanitize_callback' => 'wp_kses_post',
     ] );
     $wp_customize->add_control( 'footer_work_schedule', [
-        'label'       => __( 'Work schedule in the footer', 'steel-eshop' ),
+        'label'       => __( 'Графік роботи в підвалі', 'steel-eshop' ),
         'section'     => 'header_and_footer',
         'type'        => 'textarea',
-        'description' => __( 'Valid text HTML markup', 'steel-eshop' ),
+        'description' => __( 'Дозволена HTML-розмітка', 'steel-eshop' ),
     ]);
 
     $wp_customize->add_setting( 'footer_copyright', [
@@ -55,7 +55,7 @@ function steel_add_customizer_settings( WP_Customize_Manager $wp_customize ) {
         'sanitize_callback' => 'sanitize_textarea_field',
     ] );
     $wp_customize->add_control( 'footer_copyright', [
-        'label'       => __( 'Copyright text in the footer', 'steel-eshop' ),
+        'label'       => __( 'Текст копірайту в підвалі', 'steel-eshop' ),
         'section'     => 'header_and_footer',
         'type'        => 'textarea',
     ]);
@@ -63,7 +63,7 @@ function steel_add_customizer_settings( WP_Customize_Manager $wp_customize ) {
 
     $front_section = $wp_customize->get_section( 'static_front_page' );
     if ( $front_section ) {
-        $front_section->description = __( 'Here you can change some of the content that will be displayed on the home page', 'steel-eshop' );
+        $front_section->description = __( 'Тут ви можете змінити вміст, що відображається на головній сторінці', 'steel-eshop' );
     }
 
     $wp_customize->add_setting( 'popular_categories', [
@@ -71,10 +71,10 @@ function steel_add_customizer_settings( WP_Customize_Manager $wp_customize ) {
         'sanitize_callback' => 'sanitize_text_field',
     ] );
     $wp_customize->add_control( 'popular_categories', [
-        'label'       => __( 'List of popular categories on the home page', 'steel-eshop' ),
+        'label'       => __( 'Список популярних категорій на головній сторінці', 'steel-eshop' ),
         'section'     => 'static_front_page',
         'type'        => 'textarea',
-        'description' => __( 'Enter the category IDs separated by commas', 'steel-eshop' ),
+        'description' => __( 'Введіть ID категорій через кому', 'steel-eshop' ),
     ]);
 }
 

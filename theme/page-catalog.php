@@ -13,7 +13,7 @@ get_header(); ?>
     </div>
 
     <section class="container">
-        <header><h1><?php _e( 'Catalog', 'steel-eshop' ); ?></h1></header>
+        <header><h1><?php esc_html_e( 'Каталог', 'steel-eshop' ); ?></h1></header>
         <ul class="category-grid">
             <?php
                 $categories = steel_get_main_categories();

@@ -45,7 +45,7 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 										} elseif ( 'method' === $column_id ) {
 											if ( ! empty( $method['method']['last4'] ) ) {
 												/* translators: 1: credit card type 2: last 4 digits */
-												echo sprintf( esc_html__( '%1$s ending in %2$s', 'woocommerce' ), esc_html( wc_get_credit_card_type_label( $method['method']['brand'] ) ), esc_html( $method['method']['last4'] ) );
+												echo sprintf( esc_html__( '%1$s, що закінчується на %2$s', 'steel-eshop' ), esc_html( wc_get_credit_card_type_label( $method['method']['brand'] ) ), esc_html( $method['method']['last4'] ) );
 											} else {
 												echo esc_html( wc_get_credit_card_type_label( $method['method']['brand'] ) );
 											}
@@ -74,8 +74,8 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 			<div class="account-empty__icon" aria-hidden="true">
 				<span class="material-symbols" translate="no">credit_card</span>
 			</div>
-			<h3 class="account-empty__title"><?php esc_html_e( 'No saved methods found.', 'woocommerce' ); ?></h3>
-			<p class="account-empty__text"><?php esc_html_e( 'You can save payment methods for faster checkout next time.', 'steel-eshop' ); ?></p>
+			<h3 class="account-empty__title"><?php esc_html_e( 'Збережених способів оплати не знайдено.', 'steel-eshop' ); ?></h3>
+			<p class="account-empty__text"><?php esc_html_e( 'Ви можете зберегти способи оплати для швидшого оформлення замовлення наступного разу.', 'steel-eshop' ); ?></p>
 		</div>
 
 	<?php endif; ?>
@@ -86,7 +86,7 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 		<div class="account-payment-methods__add">
 			<a class="button" href="<?php echo esc_url( wc_get_endpoint_url( 'add-payment-method' ) ); ?>">
 				<span class="material-symbols" translate="no" aria-hidden="true">add</span>
-				<span><?php esc_html_e( 'Add payment method', 'woocommerce' ); ?></span>
+				<span><?php esc_html_e( 'Додати спосіб оплати', 'steel-eshop' ); ?></span>
 			</a>
 		</div>
 	<?php endif; ?>

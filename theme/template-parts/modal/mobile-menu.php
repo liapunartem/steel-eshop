@@ -25,8 +25,8 @@ $children        = $categories_tree['children'] ?? [];
     <!-- MAIN BODY -->
     <div class="modal__body">
         <div class="modal__header">
-            <span class="modal__title" id="modal-mobile-menu-title"><?php _e( 'Menu', 'steel-eshop' ); ?></span>
-            <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Close mobile menu', 'steel-eshop' ); ?>">
+            <span class="modal__title" id="modal-mobile-menu-title"><?php esc_html_e( 'Меню', 'steel-eshop' ); ?></span>
+            <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Закрити мобільне меню', 'steel-eshop' ); ?>">
                 <span class="material-symbols material-symbols--filled" translate="no">close</span>
             </button>
         </div>
@@ -43,18 +43,18 @@ $children        = $categories_tree['children'] ?? [];
                             <span class="material-symbols material-symbols--filled" translate="no">account_circle</span>
                         </div>
                         <div class="mobile-menu__account-info">
-                            <span class="mobile-menu__account-greeting"><?php _e( 'Hello,', 'steel-eshop' ); ?></span>
+                            <span class="mobile-menu__account-greeting"><?php esc_html_e( 'Вітаємо,', 'steel-eshop' ); ?></span>
                             <span class="mobile-menu__account-name"><?php echo esc_html( $current_user->display_name ); ?></span>
                         </div>
                     </div>
                     <div class="mobile-menu__account-actions">
                         <a href="<?php echo esc_url( $account_url ); ?>" class="mobile-menu__account-link">
                             <span class="material-symbols" translate="no">person</span>
-                            <?php _e( 'My account', 'steel-eshop' ); ?>
+                            <?php esc_html_e( 'Мій акаунт', 'steel-eshop' ); ?>
                         </a>
                         <a href="<?php echo esc_url( function_exists( 'wc_logout_url' ) ? wc_logout_url() : wp_logout_url() ); ?>" class="mobile-menu__account-link mobile-menu__account-link--logout">
                             <span class="material-symbols" translate="no">logout</span>
-                            <?php _e( 'Log out', 'steel-eshop' ); ?>
+                            <?php esc_html_e( 'Вийти', 'steel-eshop' ); ?>
                         </a>
                     </div>
                 <?php else : ?>
@@ -63,13 +63,13 @@ $children        = $categories_tree['children'] ?? [];
                             <span class="material-symbols material-symbols--filled" translate="no">account_circle</span>
                         </div>
                         <div class="mobile-menu__account-info">
-                            <span class="mobile-menu__account-title"><?php _e( 'Personal Account', 'steel-eshop' ); ?></span>
-                            <span class="mobile-menu__account-desc"><?php _e( 'Log in to track orders and save wishlist', 'steel-eshop' ); ?></span>
+                            <span class="mobile-menu__account-title"><?php esc_html_e( 'Особистий кабінет', 'steel-eshop' ); ?></span>
+                            <span class="mobile-menu__account-desc"><?php esc_html_e( 'Увійдіть, щоб відстежувати замовлення та зберігати список бажань', 'steel-eshop' ); ?></span>
                         </div>
                     </div>
                     <div class="mobile-menu__account-actions">
                         <a href="<?php echo esc_url( $account_url ); ?>" class="button button--dynamic mobile-menu__account-btn">
-                            <span><?php _e( 'Log in / Register', 'steel-eshop' ); ?></span>
+                            <span><?php esc_html_e( 'Вхід / Реєстрація', 'steel-eshop' ); ?></span>
                         </a>
                     </div>
                 <?php endif; ?>
@@ -77,17 +77,17 @@ $children        = $categories_tree['children'] ?? [];
 
             <!-- Categories trigger -->
             <div class="mobile-menu__categories-trigger-wrapper">
-                <button type="button" class="mobile-menu__categories-trigger" data-modal="mobile-menu-categories" aria-label="<?php esc_attr_e( 'Open categories', 'steel-eshop' ); ?>">
+                <button type="button" class="mobile-menu__categories-trigger" data-modal="mobile-menu-categories" aria-label="<?php esc_attr_e( 'Відкрити категорії', 'steel-eshop' ); ?>">
                     <div class="mobile-menu__categories-trigger-title">
                         <span class="material-symbols" translate="no">widgets</span>
-                        <span><?php _e( 'Categories', 'steel-eshop' ); ?></span>
+                        <span><?php esc_html_e( 'Категорії', 'steel-eshop' ); ?></span>
                     </div>
                     <span class="material-symbols" translate="no">keyboard_arrow_right</span>
                 </button>
             </div>
 
             <!-- Standard pages navigation -->
-            <nav class="mobile-menu__nav" aria-label="<?php esc_attr_e( 'Mobile Menu Navigation', 'steel-eshop' ); ?>">
+            <nav class="mobile-menu__nav" aria-label="<?php esc_attr_e( 'Навігація мобільного меню', 'steel-eshop' ); ?>">
                 <?php
                 wp_nav_menu( [
                     'theme_location' => 'header-pages-menu',
@@ -101,14 +101,14 @@ $children        = $categories_tree['children'] ?? [];
 
             <!-- Contacts -->
             <div class="mobile-menu__contact">
-                <div class="mobile-menu__contact-title"><?php _e( 'Contacts', 'steel-eshop' ); ?></div>
+                <div class="mobile-menu__contact-title"><?php esc_html_e( 'Контакти', 'steel-eshop' ); ?></div>
                 <div class="mobile-menu__contact-list">
 
                     <?php if ( $store_address || $store_city ) : ?>
                         <div class="mobile-menu__contact-item">
                             <div class="mobile-menu__contact-label">
                                 <span class="mobile-menu__contact-icon material-symbols" translate="no">location_on</span>
-                                <?php _e( 'Store address', 'steel-eshop' ); ?>
+                                <?php esc_html_e( 'Адреса магазину', 'steel-eshop' ); ?>
                             </div>
                             <span class="mobile-menu__contact-value">
                                 <?php echo esc_html( trim( $store_address . ', ' . $store_city, ', ' ) ); ?>
@@ -134,7 +134,7 @@ $children        = $categories_tree['children'] ?? [];
                         <div class="mobile-menu__contact-item">
                             <div class="mobile-menu__contact-label">
                                 <span class="mobile-menu__contact-icon material-symbols" translate="no">call</span>
-                                <?php _e( 'Phone numbers', 'steel-eshop' ); ?>
+                                <?php esc_html_e( 'Номери телефонів', 'steel-eshop' ); ?>
                             </div>
                             <span class="mobile-menu__contact-value">
                                 <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $store_phone ) ); ?>" class="mobile-menu__contact-link">
@@ -148,7 +148,7 @@ $children        = $categories_tree['children'] ?? [];
                         <div class="mobile-menu__contact-item">
                             <div class="mobile-menu__contact-label">
                                 <span class="mobile-menu__contact-icon material-symbols" translate="no">schedule</span>
-                                <?php _e( 'Work schedule', 'steel-eshop' ); ?>
+                                <?php esc_html_e( 'Графік роботи', 'steel-eshop' ); ?>
                             </div>
                             <span class="mobile-menu__contact-value">
                                 <?php echo wp_kses_post( $steel_theme_settings['footer_work_schedule'] ); ?>
@@ -163,10 +163,10 @@ $children        = $categories_tree['children'] ?? [];
     </div>
 
     <!-- SIBLING LAYER: Categories Layer -->
-    <div class="modal__layer" id="mobile-menu-categories" role="region" aria-label="<?php esc_attr_e( 'Categories', 'steel-eshop' ); ?>" aria-hidden="true">
+    <div class="modal__layer" id="mobile-menu-categories" role="region" aria-label="<?php esc_attr_e( 'Категорії', 'steel-eshop' ); ?>" aria-hidden="true">
         <div class="modal__header">
-            <span class="modal__title"><?php _e( 'Categories', 'steel-eshop' ); ?></span>
-            <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Close category menu', 'steel-eshop' ); ?>">
+            <span class="modal__title"><?php esc_html_e( 'Категорії', 'steel-eshop' ); ?></span>
+            <button type="button" class="modal__close-btn" aria-label="<?php esc_attr_e( 'Закрити меню категорій', 'steel-eshop' ); ?>">
                 <span class="material-symbols material-symbols--filled" translate="no">close</span>
             </button>
         </div>
@@ -183,7 +183,7 @@ $children        = $categories_tree['children'] ?? [];
                                     <?php echo esc_html( $parent->name ); ?>
                                 </a>
                                 <?php if ( $has_children ) : ?>
-                                    <button type="button" class="mobile-menu__category-toggle" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle subcategories', 'steel-eshop' ); ?>">
+                                    <button type="button" class="mobile-menu__category-toggle" aria-expanded="false" aria-label="<?php esc_attr_e( 'Перемкнути підкатегорії', 'steel-eshop' ); ?>">
                                         <span class="material-symbols" translate="no">keyboard_arrow_down</span>
                                     </button>
                                 <?php endif; ?>
@@ -204,7 +204,7 @@ $children        = $categories_tree['children'] ?? [];
                     <?php endforeach; ?>
                 </ul>
             <?php else : ?>
-                <p class="mobile-menu__empty"><?php _e( 'No categories found', 'steel-eshop' ); ?></p>
+                <p class="mobile-menu__empty"><?php esc_html_e( 'Категорій не знайдено', 'steel-eshop' ); ?></p>
             <?php endif; ?>
         </div>
     </div>

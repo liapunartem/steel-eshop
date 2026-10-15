@@ -17,19 +17,19 @@ do_action( 'woocommerce_before_reset_password_form' );
 <div class="account-auth-card">
 	<form method="post" class="account-auth-card__form form woocommerce-ResetPassword lost_reset_password">
 
-		<h2 class="account-auth-card__title"><?php esc_html_e( 'Set new password', 'steel-eshop' ); ?></h2>
+		<h2 class="account-auth-card__title"><?php esc_html_e( 'Встановити новий пароль', 'steel-eshop' ); ?></h2>
 
 		<p class="account-auth-card__desc">
-			<?php echo apply_filters( 'woocommerce_reset_password_message', esc_html__( 'Enter a new password below.', 'woocommerce' ) ); ?>
+			<?php echo apply_filters( 'woocommerce_reset_password_message', esc_html__( 'Введіть новий пароль нижче.', 'steel-eshop' ) ); ?>
 		</p>
 
 		<p class="form__field woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
-			<label class="form__label" for="password_1"><?php esc_html_e( 'New password', 'woocommerce' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
+			<label class="form__label" for="password_1"><?php esc_html_e( 'Новий пароль', 'steel-eshop' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Обов\'язково', 'steel-eshop' ); ?></span></label>
 			<input type="password" class="form__input woocommerce-Input woocommerce-Input--text input-text" name="password_1" id="password_1" autocomplete="new-password" required aria-required="true" />
 		</p>
 
 		<p class="form__field woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
-			<label class="form__label" for="password_2"><?php esc_html_e( 'Re-enter new password', 'woocommerce' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
+			<label class="form__label" for="password_2"><?php esc_html_e( 'Повторіть новий пароль', 'steel-eshop' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Обов\'язково', 'steel-eshop' ); ?></span></label>
 			<input type="password" class="form__input woocommerce-Input woocommerce-Input--text input-text" name="password_2" id="password_2" autocomplete="new-password" required aria-required="true" />
 		</p>
 
@@ -42,8 +42,8 @@ do_action( 'woocommerce_before_reset_password_form' );
 
 		<div class="account-auth-card__actions">
 			<input type="hidden" name="wc_reset_password" value="true" />
-			<button type="submit" class="button form__submit-button woocommerce-Button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" value="<?php esc_attr_e( 'Save', 'woocommerce' ); ?>">
-				<?php esc_html_e( 'Save new password', 'steel-eshop' ); ?>
+			<button type="submit" class="button form__submit-button woocommerce-Button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" value="<?php esc_attr_e( 'Зберегти новий пароль', 'steel-eshop' ); ?>">
+				<?php esc_html_e( 'Зберегти новий пароль', 'steel-eshop' ); ?>
 			</button>
 		</div>
 

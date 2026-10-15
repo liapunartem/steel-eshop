@@ -28,7 +28,7 @@
 							['loading' => 'lazy', 'alt' => 'logo',]
 						); ?>
 					</a>
-					<nav aria-label="<?php esc_attr_e( 'Footer Pages Navigation', 'steel-eshop' ); ?>">
+					<nav aria-label="<?php esc_attr_e( 'Навігація по сторінках', 'steel-eshop' ); ?>">
 						<?php
 							wp_nav_menu( [
 								'theme_location' => 'footer-pages-menu',
@@ -44,7 +44,7 @@
 				<!-- category navigation -->
 				<div class="footer__categories">
 					<div class="footer__categories-title footer__title">
-						<?php _e( 'Categories', 'steel-eshop' ) ?>
+						<?php esc_html_e( 'Категорії', 'steel-eshop' ); ?>
 						<span class="footer__categories-title-icon visible-mobile material-symbols" translate="no">stat_minus_1</span>
 					</div>
 					<?php steel_footer_categories(); ?>
@@ -52,13 +52,13 @@
 				
 				<!-- contacts -->
 				<div class="footer__contact">
-					<div class="footer__title"><?php _e( 'Contacts', 'steel-eshop' ) ?></div>
+					<div class="footer__title"><?php esc_html_e( 'Контакти', 'steel-eshop' ); ?></div>
 					<div class="footer__contact-grid">
 
 						<div class="footer__contact-item">
 							<div class="footer__contact-title">
 								<span class="footer__contact-icon material-symbols" translate="no">location_on</span>
-								<?php _e( 'Store address', 'steel-eshop' ) ?>
+								<?php esc_html_e( 'Адреса магазину', 'steel-eshop' ); ?>
 							</div>
 							<span class="footer__contact-text">
 								<?php
@@ -88,7 +88,7 @@
 						<div class="footer__contact-item">
 							<div class="footer__contact-title">
 								<span class="footer__contact-icon material-symbols" translate="no">call</span>
-								<?php _e( 'Phone numbers', 'steel-eshop' ) ?>
+								<?php esc_html_e( 'Номери телефонів', 'steel-eshop' ); ?>
 							</div>
 							<span class="footer__contact-text">
 								<?php
@@ -105,7 +105,7 @@
 						<div class="footer__contact-item">
 							<div class="footer__contact-title">
 								<span class="footer__contact-icon material-symbols" translate="no">schedule</span>
-								<?php _e( 'Work schedule', 'steel-eshop' ) ?>
+								<?php esc_html_e( 'Графік роботи', 'steel-eshop' ); ?>
 							</div>
 							<span class="footer__contact-text">
 								<?php echo wp_kses_post($steel_theme_settings['footer_work_schedule']); ?>

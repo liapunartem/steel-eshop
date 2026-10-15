@@ -31,10 +31,10 @@ if ( ! comments_open() ) {
 			$count = $product->get_review_count();
 			if ( $count && wc_review_ratings_enabled() ) {
 				/* translators: 1: reviews count 2: product name */
-				$reviews_title = sprintf( esc_html( _n( '%1$s review for %2$s', '%1$s reviews for %2$s', $count, 'woocommerce' ) ), esc_html( $count ), '<span>' . get_the_title() . '</span>' );
+				$reviews_title = sprintf( esc_html( _n( '%1$s відгук для %2$s', '%1$s відгуків для %2$s', $count, 'steel-eshop' ) ), esc_html( $count ), '<span>' . get_the_title() . '</span>' );
 				echo apply_filters( 'woocommerce_reviews_title', $reviews_title, $count, $product ); // WPCS: XSS ok.
 			} else {
-				esc_html_e( 'Reviews', 'woocommerce' );
+				esc_html_e( 'Відгуки', 'steel-eshop' );
 			}
 			?>
 		</h2>
@@ -93,14 +93,14 @@ if ( ! comments_open() ) {
 			<?php endif; ?>
 
 		<?php else : ?>
-			<p class="reviews__noreviews"><?php esc_html_e( 'There are no reviews yet.', 'woocommerce' ); ?></p>
+			<p class="reviews__noreviews"><?php esc_html_e( 'Відгуків ще немає.', 'steel-eshop' ); ?></p>
 		<?php endif; ?>
 	</div>
 
 	<?php if ( get_option( 'woocommerce_review_rating_verification_required' ) === 'no' || wc_customer_bought_product( '', get_current_user_id(), $product->get_id() ) ) : ?>
-		<button data-modal="modal-reviews-form" class="button"><?php _e( 'Leave a review', 'steel-eshop' ); ?></button>
+		<button data-modal="modal-reviews-form" class="button"><?php esc_html_e( 'Залишити відгук', 'steel-eshop' ); ?></button>
 	<?php else : ?>
-		<p class="reviews__verification-required"><?php esc_html_e( 'Only logged in customers who have purchased this product may leave a review.', 'woocommerce' ); ?></p>
+		<p class="reviews__verification-required"><?php esc_html_e( 'Лише зареєстровані покупці, які придбали цей товар, можуть залишати відгуки.', 'steel-eshop' ); ?></p>
 	<?php endif; ?>
 
 	<div class="clear"></div>

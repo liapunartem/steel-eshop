@@ -30,7 +30,7 @@ $rating_percent = ( $average_rating / 5 ) * 100;
 
 	<!-- gallery -->
 	<section class="product-gallery">
-    	<h2 class="visually-hidden"><?php _e( 'Product gallery', 'steel-eshop' ) ?></h2>
+    	<h2 class="visually-hidden"><?php esc_html_e( 'Галерея товару', 'steel-eshop' ); ?></h2>
 
 		<?php if ( count( $product_img_ids ) > 1 ): ?>
 		<!-- thumbnail -->
@@ -45,7 +45,7 @@ $rating_percent = ( $average_rating / 5 ) * 100;
 								[
 									'class' => 'swiper-thumbs__img',
 									'alt' => esc_attr( $product->get_title()
-									. sprintf( __( ' - thumbnail %d', 'steel-eshop' ), $index + 1 ) ),
+									. sprintf( __( ' — мініатюра %d', 'steel-eshop' ), $index + 1 ) ),
 								]
 
 							); ?>
@@ -58,7 +58,7 @@ $rating_percent = ( $average_rating / 5 ) * 100;
 		<!-- main slider -->
 		<div class="product-gallery__slider swiper swiper--slider">
 
-			<button class="product-gallery__wishlist-button wishlist-button <?php echo $is_in_wishlist ? 'is-active' : ''; ?>" data-product-id="<?php the_ID(); ?>">
+			<button class="product-gallery__wishlist-button wishlist-button <?php echo $is_in_wishlist ? 'is-active' : ''; ?>" data-product-id="<?php the_ID(); ?>" aria-label="<?php echo esc_attr( sprintf( $is_in_wishlist ? __( 'Видалити %s зі списку бажань', 'steel-eshop' ) : __( 'Додати %s до списку бажань', 'steel-eshop' ), $product->get_name() ) ); ?>">
 				<span class="material-symbols" translate="no">favorite</span>
 			</button>
 
@@ -77,7 +77,7 @@ $rating_percent = ( $average_rating / 5 ) * 100;
 								false,
 								[
 									'alt' => esc_attr( $product->get_title()
-									. sprintf( __( ' - image %d', 'steel-eshop' ), $index + 1 ) ),
+									. sprintf( __( ' — фото %d', 'steel-eshop' ), $index + 1 ) ),
 								]
 							);?>
 						</a>
@@ -89,10 +89,10 @@ $rating_percent = ( $average_rating / 5 ) * 100;
 			
 			<?php if ( count( $product_img_ids ) > 1 ): ?>
 				<!-- navigation -->
-				<button class="swiper__button swiper__button--absolute swiper__button--prev button button--rounded">
+				<button class="swiper__button swiper__button--absolute swiper__button--prev button button--rounded" aria-label="<?php esc_attr_e( 'Попереднє фото', 'steel-eshop' ); ?>">
 					<span class="material-symbols" translate="no">keyboard_arrow_left</span>
 				</button>
-				<button class="swiper__button swiper__button--absolute swiper__button--next button button--rounded">
+				<button class="swiper__button swiper__button--absolute swiper__button--next button button--rounded" aria-label="<?php esc_attr_e( 'Наступне фото', 'steel-eshop' ); ?>">
 					<span class="material-symbols" translate="no">keyboard_arrow_right</span>
 				</button>
 			<?php endif; ?>
@@ -110,10 +110,10 @@ $rating_percent = ( $average_rating / 5 ) * 100;
 
 				<p class="product-summary__sku">
 					<?php
-						$sku = $product->get_sku() ?: esc_html__( 'N/A', 'steel-eshop' );
+						$sku = $product->get_sku() ?: esc_html__( 'Немає', 'steel-eshop' );
 					?>
 
-					<?php esc_html_e( 'SKU:', 'steel-eshop' ); ?>
+					<?php esc_html_e( 'Артикул:', 'steel-eshop' ); ?>
 					<span id="js-sku-display"
 						data-default-sku="<?php echo $sku; ?>">
 						<?php echo $sku; ?>
@@ -125,7 +125,7 @@ $rating_percent = ( $average_rating / 5 ) * 100;
 				
 				<div class="product-summary__flex-wrap">
 					<div class="product-summary__rating">
-						<div class="product-summary__stars" role="img" aria-label="<?php echo esc_attr( sprintf( __( 'Rated %s out of 5', 'steel-eshop' ), $average_rating ) ); ?>">
+						<div class="product-summary__stars" role="img" aria-label="<?php echo esc_attr( sprintf( __( 'Оцінка %s з 5', 'steel-eshop' ), $average_rating ) ); ?>">
 							<span style="width: <?php echo esc_attr( $rating_percent ); ?>%;"></span>
 						</div>
 						<span class="product-summary__rating-count">(<?php echo esc_html( $rating_count ); ?>)</span>
@@ -172,7 +172,7 @@ $rating_percent = ( $average_rating / 5 ) * 100;
 											 *
 											 * @param string  $button The reset variation button HTML.
 											 */
-											echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#" aria-label="' . esc_attr__( 'Clear options', 'woocommerce' ) . '">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
+											echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#" aria-label="' . esc_attr__( 'Очистити вибір', 'steel-eshop' ) . '">' . esc_html__( 'Очистити', 'steel-eshop' ) . '</a>' ) ) : '';
 										?>
 									</td>
 								</tr>

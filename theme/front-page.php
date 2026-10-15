@@ -60,10 +60,10 @@ global $steel_theme_settings;
                 </div>
 
                 <!-- navigation -->
-                <button class="swiper__button swiper__button--absolute swiper__button--prev button button--rounded" aria-label="<?php esc_attr_e( 'Previous slide', 'steel-eshop' ); ?>">
+                <button class="swiper__button swiper__button--absolute swiper__button--prev button button--rounded" aria-label="<?php esc_attr_e( 'Попередній слайд', 'steel-eshop' ); ?>">
                     <span class="material-symbols" translate="no">keyboard_arrow_left</span>
                 </button>
-                <button class="swiper__button swiper__button--absolute swiper__button--next button button--rounded" aria-label="<?php esc_attr_e( 'Next slide', 'steel-eshop' ); ?>">
+                <button class="swiper__button swiper__button--absolute swiper__button--next button button--rounded" aria-label="<?php esc_attr_e( 'Наступний слайд', 'steel-eshop' ); ?>">
                     <span class="material-symbols" translate="no">keyboard_arrow_right</span>
                 </button>
                 <!-- pagination -->
@@ -74,7 +74,7 @@ global $steel_theme_settings;
             <!-- popular categories -->
             <section class="section">
                 <header class="section__header">
-                    <h2><?php _e( 'Popular categories', 'steel-eshop' ) ?></h2>
+                    <h2><?php esc_html_e( 'Популярні категорії', 'steel-eshop' ); ?></h2>
                 </header>
 
                 <ul class="category-grid category-grid--front-page">
@@ -100,7 +100,7 @@ global $steel_theme_settings;
                         $catalog_url  = $catalog_page ? get_permalink( $catalog_page ) : wc_get_page_permalink( 'shop' );
                     ?>
                     <a href="<?php echo esc_url( $catalog_url ); ?>">
-                        <?php _e( 'All categories', 'steel-eshop' ) ?>
+                        <?php esc_html_e( 'Всі категорії', 'steel-eshop' ); ?>
                         <span class="material-symbols" translate="no">stat_minus_1</span>
                     </a>
                 </footer>
@@ -138,7 +138,7 @@ global $steel_theme_settings;
         <?php if ( $shop_query->have_posts() ) : ?>
 
             <header class="section__header">
-                <h2><?php _e( 'All products', 'steel-eshop' ) ?></h2>
+                <h2><?php esc_html_e( 'Всі товари', 'steel-eshop' ); ?></h2>
             </header>
 
             <!-- Контейнер для товарів -->

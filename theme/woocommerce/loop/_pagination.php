@@ -45,7 +45,7 @@ if ( is_array( $links ) ) {
 		}
 	}
 
-	echo '<nav class="pagination">';
+	echo '<nav class="pagination" aria-label="' . esc_attr__( 'Навігація по сторінках', 'steel-eshop' ) . '">';
 
 	if ( $prev_link ) {
 		echo str_replace( 'class="prev page-numbers', 'class="pagination__link button', $prev_link );

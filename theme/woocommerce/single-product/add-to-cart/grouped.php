@@ -68,7 +68,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 								if ( $grouped_product_child->is_on_sale() ) {
 									printf(
 										/* translators: %1$s: Product name. %2$s: Sale price. %3$s: Regular price */
-										esc_html__( 'Buy one of %1$s on sale for %2$s, original price was %3$s', 'woocommerce' ),
+										esc_html__( 'Купити одиницю %1$s зі знижкою за %2$s, звичайна ціна %3$s', 'steel-eshop' ),
 										esc_html( $grouped_product_child->get_name() ),
 										esc_html( wp_strip_all_tags( wc_price( $grouped_product_child->get_price() ) ) ),
 										esc_html( wp_strip_all_tags( wc_price( $grouped_product_child->get_regular_price() ) ) )
@@ -76,7 +76,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 								} else {
 									printf(
 										/* translators: %1$s: Product name. %2$s: Product price */
-										esc_html__( 'Buy one of %1$s for %2$s', 'woocommerce' ),
+										esc_html__( 'Купити одиницю %1$s за %2$s', 'steel-eshop' ),
 										esc_html( $grouped_product_child->get_name() ),
 										esc_html( wp_strip_all_tags( wc_price( $grouped_product_child->get_price() ) ) )
 									);

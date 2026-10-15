@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$page_title = ( 'billing' === $load_address ) ? esc_html__( 'Billing address', 'woocommerce' ) : esc_html__( 'Shipping address', 'woocommerce' );
+$page_title = ( 'billing' === $load_address ) ? esc_html__( 'Платіжна адреса', 'steel-eshop' ) : esc_html__( 'Адреса доставки', 'steel-eshop' );
 
 do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 
@@ -23,7 +23,7 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 		<div class="account-edit-address__top">
 			<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address' ) ); ?>" class="button button--transparent button--small account-edit-address__back">
 				<span class="material-symbols" translate="no" aria-hidden="true">arrow_back</span>
-				<span><?php esc_html_e( 'Back to addresses', 'steel-eshop' ); ?></span>
+				<span><?php esc_html_e( 'Назад до адрес', 'steel-eshop' ); ?></span>
 			</a>
 		</div>
 
@@ -45,8 +45,8 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 				<?php do_action( "woocommerce_after_edit_address_form_{$load_address}" ); ?>
 
 				<div class="account-edit-address__actions">
-					<button type="submit" class="button account-edit-address__submit<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="save_address" value="<?php esc_attr_e( 'Save address', 'woocommerce' ); ?>">
-						<?php esc_html_e( 'Save address', 'woocommerce' ); ?>
+					<button type="submit" class="button account-edit-address__submit<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="save_address" value="<?php esc_attr_e( 'Зберегти адресу', 'steel-eshop' ); ?>">
+						<?php esc_html_e( 'Зберегти адресу', 'steel-eshop' ); ?>
 					</button>
 					<?php wp_nonce_field( 'woocommerce-edit_address', 'woocommerce-edit-address-nonce' ); ?>
 					<input type="hidden" name="action" value="edit_address" />

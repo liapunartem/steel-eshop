@@ -18,14 +18,14 @@ $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 	<div class="account-add-payment-method__top">
 		<a href="<?php echo esc_url( wc_get_endpoint_url( 'payment-methods' ) ); ?>" class="button button--transparent button--small account-add-payment-method__back">
 			<span class="material-symbols" translate="no" aria-hidden="true">arrow_back</span>
-			<span><?php esc_html_e( 'Back to payment methods', 'steel-eshop' ); ?></span>
+			<span><?php esc_html_e( 'Назад до способів оплати', 'steel-eshop' ); ?></span>
 		</a>
 	</div>
 
 	<?php if ( $available_gateways ) : ?>
 		<form id="add_payment_method" class="account-add-payment-method__form form" method="post">
 			<div id="payment" class="woocommerce-Payment">
-				<ul class="woocommerce-PaymentMethods payment_methods methods" aria-label="<?php esc_attr_e( 'Payment methods', 'woocommerce' ); ?>">
+				<ul class="woocommerce-PaymentMethods payment_methods methods" aria-label="<?php esc_attr_e( 'Способи оплати', 'steel-eshop' ); ?>">
 					<?php
 					if ( count( $available_gateways ) ) {
 						current( $available_gateways )->set_current();
@@ -55,8 +55,8 @@ $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
 				<div class="account-add-payment-method__actions form-row">
 					<?php wp_nonce_field( 'woocommerce-add-payment-method', 'woocommerce-add-payment-method-nonce' ); ?>
-					<button type="submit" class="button account-add-payment-method__submit<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" id="place_order" value="<?php esc_attr_e( 'Add payment method', 'woocommerce' ); ?>">
-						<?php esc_html_e( 'Add payment method', 'woocommerce' ); ?>
+					<button type="submit" class="button account-add-payment-method__submit<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" id="place_order" value="<?php esc_attr_e( 'Додати спосіб оплати', 'steel-eshop' ); ?>">
+						<?php esc_html_e( 'Додати спосіб оплати', 'steel-eshop' ); ?>
 					</button>
 					<input type="hidden" name="woocommerce_add_payment_method" id="woocommerce_add_payment_method" value="1" />
 				</div>
@@ -64,7 +64,7 @@ $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 		</form>
 	<?php else : ?>
 		<div class="account-empty">
-			<p><?php esc_html_e( 'New payment methods can only be added during checkout. Please contact us if you require assistance.', 'woocommerce' ); ?></p>
+			<p><?php esc_html_e( 'Нові способи оплати можна додати лише під час оформлення замовлення. Будь ласка, зв\'яжіться з нами, якщо вам потрібна допомога.', 'steel-eshop' ); ?></p>
 		</div>
 	<?php endif; ?>
 </div>

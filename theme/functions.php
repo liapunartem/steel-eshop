@@ -6,6 +6,7 @@ require_once get_template_directory() . '/inc/cpt.php';
 require_once get_template_directory() . '/inc/queries.php';
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/woocommerce-hooks.php';
+require_once get_template_directory() . '/inc/checkout.php';
 require_once get_template_directory() . '/inc/template-functions.php';
 require_once get_template_directory() . '/inc/class-steel-nav-menu.php';
 require_once get_template_directory() . '/inc/class-steel-dropdown-categories.php';
@@ -29,8 +30,8 @@ add_action('after_setup_theme', function() {
     // Menu registration
     register_nav_menus(
         [
-            'header-pages-menu' => __( 'Header pages menu', 'steel-eshop' ),
-            'footer-pages-menu' => __( 'Footer pages menu', 'steel-eshop' ),
+            'header-pages-menu' => __( 'Меню сторінок у шапці', 'steel-eshop' ),
+            'footer-pages-menu' => __( 'Меню сторінок у підвалі', 'steel-eshop' ),
         ]
     );
 });
@@ -115,9 +116,9 @@ function steel_enqueue_scripts() {
 		'ajax_url' => admin_url( 'admin-ajax.php' ),
 		'nonce'    => wp_create_nonce( 'steel_wishlist_nonce' ),
 		'i18n'     => [
-			'added'   => __( 'Product added to wishlist', 'steel-eshop' ),
-			'removed' => __( 'Product removed from wishlist', 'steel-eshop' ),
-			'error'   => __( 'An error occurred. Please try again.', 'steel-eshop' ),
+			'added'   => __( 'Товар додано до списку бажань', 'steel-eshop' ),
+			'removed' => __( 'Товар видалено зі списку бажань', 'steel-eshop' ),
+			'error'   => __( 'Сталася помилка. Будь ласка, спробуйте ще раз.', 'steel-eshop' ),
         ],
 	] );
 
@@ -125,6 +126,16 @@ function steel_enqueue_scripts() {
         wp_enqueue_script( 'steel-sidebar', get_template_directory_uri() . '/assets/js/sidebar.js', [], THEME_VERSION, true );
     } else {
         wp_enqueue_script( 'steel-header-catalog', get_template_directory_uri() . '/assets/js/header-catalog.js', [], THEME_VERSION, true );
+    }
+
+    if ( function_exists( 'is_checkout' ) && is_checkout() && ! is_order_received_page() ) {
+        wp_enqueue_script( 'steel-checkout', get_template_directory_uri() . '/assets/js/checkout.js', ['jquery'], THEME_VERSION, true );
+        wp_localize_script( 'steel-checkout', 'stCheckout', [
+            'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+            'i18n'    => [
+                'networkError' => __( 'Помилка мережі. Спробуйте ще раз.', 'steel-eshop' ),
+            ],
+        ] );
     }
 }
 

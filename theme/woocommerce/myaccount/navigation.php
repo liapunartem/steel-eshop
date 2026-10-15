@@ -26,7 +26,7 @@ $nav_icons = [
 ];
 ?>
 
-<nav class="account-nav scroll-shadow woocommerce-MyAccount-navigation" aria-label="<?php esc_html_e( 'Account pages', 'woocommerce' ); ?>">
+<nav class="account-nav scroll-shadow woocommerce-MyAccount-navigation" aria-label="<?php esc_attr_e( 'Навігація облікового запису', 'steel-eshop' ); ?>">
 	<div class="scroll-shadow__left"></div>
 	<ul class="account-nav__list" data-check-scroll="horizontal">
 		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) :

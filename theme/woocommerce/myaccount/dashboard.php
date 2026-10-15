@@ -34,7 +34,7 @@ $allowed_html = [
 				<?php
 				printf(
 					/* translators: 1: user display name */
-					esc_html__( 'Hello, %s', 'steel-eshop' ),
+					esc_html__( 'Привіт, %s', 'steel-eshop' ),
 					'<strong>' . esc_html( $current_user->display_name ) . '</strong>'
 				);
 				?>
@@ -43,7 +43,7 @@ $allowed_html = [
 				<?php
 				printf(
 					/* translators: 1: logout url */
-					wp_kses( __( 'Not your account? <a href="%s" class="account-dashboard__logout-link">Log out</a>', 'steel-eshop' ), $allowed_html ),
+					wp_kses( __( 'Не ваш обліковий запис? <a href="%s" class="account-dashboard__logout-link">Вийти</a>', 'steel-eshop' ), $allowed_html ),
 					esc_url( wc_logout_url() )
 				);
 				?>
@@ -53,10 +53,7 @@ $allowed_html = [
 
 	<p class="account-dashboard__intro">
 		<?php
-		$dashboard_desc = __( 'From your account dashboard you can view your <a href="%1$s">recent orders</a>, manage your <a href="%2$s">billing address</a>, and <a href="%3$s">edit your password and account details</a>.', 'woocommerce' );
-		if ( wc_shipping_enabled() ) {
-			$dashboard_desc = __( 'From your account dashboard you can view your <a href="%1$s">recent orders</a>, manage your <a href="%2$s">shipping and billing addresses</a>, and <a href="%3$s">edit your password and account details</a>.', 'woocommerce' );
-		}
+		$dashboard_desc = __( 'З панелі керування вашого облікового запису ви можете переглядати свої <a href="%1$s">останні замовлення</a>, керувати <a href="%2$s">адресою доставки</a> та <a href="%3$s">змінювати пароль і деталі облікового запису</a>.', 'steel-eshop' );
 		printf(
 			wp_kses( $dashboard_desc, $allowed_html ),
 			esc_url( wc_get_endpoint_url( 'orders' ) ),
@@ -72,8 +69,8 @@ $allowed_html = [
 				<span class="material-symbols" translate="no">package_2</span>
 			</div>
 			<div class="account-card__info">
-				<span class="account-card__title"><?php esc_html_e( 'Orders', 'woocommerce' ); ?></span>
-				<span class="account-card__desc"><?php esc_html_e( 'View order history, status and receipts', 'steel-eshop' ); ?></span>
+				<span class="account-card__title"><?php esc_html_e( 'Замовлення', 'steel-eshop' ); ?></span>
+				<span class="account-card__desc"><?php esc_html_e( 'Історія замовлень, статус та квитанції', 'steel-eshop' ); ?></span>
 			</div>
 			<span class="account-card__arrow material-symbols" translate="no" aria-hidden="true">arrow_forward</span>
 		</a>
@@ -83,8 +80,8 @@ $allowed_html = [
 				<span class="material-symbols" translate="no">location_on</span>
 			</div>
 			<div class="account-card__info">
-				<span class="account-card__title"><?php esc_html_e( 'Addresses', 'woocommerce' ); ?></span>
-				<span class="account-card__desc"><?php esc_html_e( 'Manage shipping and billing addresses', 'steel-eshop' ); ?></span>
+				<span class="account-card__title"><?php esc_html_e( 'Адреса доставки', 'steel-eshop' ); ?></span>
+				<span class="account-card__desc"><?php esc_html_e( 'Керування адресою доставки', 'steel-eshop' ); ?></span>
 			</div>
 			<span class="account-card__arrow material-symbols" translate="no" aria-hidden="true">arrow_forward</span>
 		</a>
@@ -94,8 +91,8 @@ $allowed_html = [
 				<span class="material-symbols" translate="no">manage_accounts</span>
 			</div>
 			<div class="account-card__info">
-				<span class="account-card__title"><?php esc_html_e( 'Account details', 'woocommerce' ); ?></span>
-				<span class="account-card__desc"><?php esc_html_e( 'Edit name, email and change password', 'steel-eshop' ); ?></span>
+				<span class="account-card__title"><?php esc_html_e( 'Деталі облікового запису', 'steel-eshop' ); ?></span>
+				<span class="account-card__desc"><?php esc_html_e( 'Редагування імені, email та зміна пароля', 'steel-eshop' ); ?></span>
 			</div>
 			<span class="account-card__arrow material-symbols" translate="no" aria-hidden="true">arrow_forward</span>
 		</a>

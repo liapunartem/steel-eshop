@@ -744,6 +744,10 @@
         border-radius: var(--st-border-radius);
         padding: rem(20);
 
+        &--billing-address {
+            display: none;
+        }
+
         &__title {
             font-size: rem(17);
             font-weight: 500;

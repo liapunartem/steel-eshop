@@ -6,6 +6,10 @@
     gap: var(--st-container-padding-x);
     transition: grid-template-columns var(--st-transition-duration);
 
+    &--right {
+        grid-template-columns: minmax(0, 1fr) var(--st-sidebar-width);
+    }
+
     &__sidebar {
         position: sticky;
         z-index: 10;

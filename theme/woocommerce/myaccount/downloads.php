@@ -37,10 +37,10 @@ do_action( 'woocommerce_before_account_downloads', $has_downloads ); ?>
 			<div class="account-empty__icon" aria-hidden="true">
 				<span class="material-symbols" translate="no">download</span>
 			</div>
-			<h3 class="account-empty__title"><?php esc_html_e( 'No downloads available yet.', 'woocommerce' ); ?></h3>
-			<p class="account-empty__text"><?php esc_html_e( 'When you purchase digital or downloadable items, they will appear here.', 'steel-eshop' ); ?></p>
+			<h3 class="account-empty__title"><?php esc_html_e( 'Завантажень ще немає.', 'steel-eshop' ); ?></h3>
+			<p class="account-empty__text"><?php esc_html_e( 'Коли ви придбаєте завантажувані товари, вони зʼявляться тут.', 'steel-eshop' ); ?></p>
 			<a class="button account-empty__button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-				<?php esc_html_e( 'Browse products', 'woocommerce' ); ?>
+				<?php esc_html_e( 'Перейти до каталогу', 'steel-eshop' ); ?>
 			</a>
 		</div>
 

@@ -30,10 +30,10 @@ do_action( 'woocommerce_before_main_content' );
                 </ul>
 
                 <!-- Navigation -->
-                <button class="swiper__button swiper__button--absolute swiper__button--prev button button--rounded" aria-label="<?php esc_attr_e( 'Previous categories', 'steel-eshop' ); ?>">
+                <button class="swiper__button swiper__button--absolute swiper__button--prev button button--rounded" aria-label="<?php esc_attr_e( 'Попередні категорії', 'steel-eshop' ); ?>">
                     <span class="material-symbols" translate="no">keyboard_arrow_left</span>
                 </button>
-                <button class="swiper__button swiper__button--absolute swiper__button--next button button--rounded" aria-label="<?php esc_attr_e( 'Next categories', 'steel-eshop' ); ?>">
+                <button class="swiper__button swiper__button--absolute swiper__button--next button button--rounded" aria-label="<?php esc_attr_e( 'Наступні категорії', 'steel-eshop' ); ?>">
                     <span class="material-symbols" translate="no">keyboard_arrow_right</span>
                 </button>
 
@@ -46,7 +46,7 @@ do_action( 'woocommerce_before_main_content' );
         <!-- sidebar with filters -->
         <?php
             if ( !is_search() && !is_shop() ) {
-                echo '<aside class="sidebar-layout__sidebar" aria-label="' . esc_attr__( 'Product Filters', 'steel-eshop' ) . '">';
+                echo '<aside class="sidebar-layout__sidebar" aria-label="' . esc_attr__( 'Фільтри товарів', 'steel-eshop' ) . '">';
                 get_template_part('template-parts/product-filters');
                 echo '</aside>';
             }
@@ -64,7 +64,7 @@ do_action( 'woocommerce_before_main_content' );
                 <?php if ( !is_search() ): ?>
                     <button class="products__filters-button button visible-tablet"
                         data-modal="product-filters" data-lock-class="no-scroll-tablet"
-                        aria-label="<?php esc_attr_e( 'Filter products', 'steel-eshop' ); ?>"
+                        aria-label="<?php esc_attr_e( 'Фільтрувати товари', 'steel-eshop' ); ?>"
                     >
                         <span class="material-symbols" translate="no">tune</span>
                     </button>
@@ -95,7 +95,7 @@ do_action( 'woocommerce_before_main_content' );
 
                 <div class="products__empty">
                     <span class="material-symbols" translate="no">search_off</span>
-                    <?php _e( 'Unfortunately, nothing was found.', 'steel-eshop' ); ?>
+                    <?php esc_html_e( 'На жаль, нічого не знайдено.', 'steel-eshop' ); ?>
                 </div>
 
             <?php endif; ?>
