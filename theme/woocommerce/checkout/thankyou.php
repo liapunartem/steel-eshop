@@ -74,6 +74,191 @@ defined( 'ABSPATH' ) || exit;
 
 			<div class="order-received__layout">
 				<div class="order-received__main">
+					<?php if ( 'bacs' === $order->get_payment_method() ) : ?>
+						<?php
+						$bacs_accounts     = array();
+						$bacs_instructions = '';
+
+						if ( function_exists( 'WC' ) && WC()->payment_gateways() ) {
+							$gateways = WC()->payment_gateways()->payment_gateways();
+							if ( isset( $gateways['bacs'] ) ) {
+								$bacs_gateway      = $gateways['bacs'];
+								$bacs_instructions = (string) $bacs_gateway->instructions;
+								$bacs_accounts     = apply_filters( 'woocommerce_bacs_accounts', $bacs_gateway->account_details, $order->get_id() );
+							}
+						}
+
+						if ( empty( $bacs_accounts ) ) {
+							$raw_accounts  = get_option( 'woocommerce_bacs_accounts', array() );
+							$bacs_accounts = is_array( $raw_accounts ) ? $raw_accounts : array();
+						}
+						?>
+						<?php if ( ! empty( $bacs_accounts ) || ! empty( $bacs_instructions ) ) : ?>
+							<section class="order-received__block order-received-bacs">
+								<h3 class="order-received__block-title">
+									<span class="material-symbols" translate="no" aria-hidden="true">account_balance</span>
+									<?php esc_html_e( 'Реквізити для оплати', 'steel-eshop' ); ?>
+								</h3>
+
+								<?php if ( $bacs_instructions ) : ?>
+									<div class="order-received-bacs__instructions">
+										<?php echo wp_kses_post( wpautop( wptexturize( $bacs_instructions ) ) ); ?>
+									</div>
+								<?php else : ?>
+									<p class="order-received-bacs__desc">
+										<?php esc_html_e( 'Переведіть кошти за вказаними реквізитами. Замовлення буде відправлено після зарахування коштів.', 'steel-eshop' ); ?>
+									</p>
+								<?php endif; ?>
+
+								<?php if ( ! empty( $bacs_accounts ) ) : ?>
+									<div class="order-received-bacs__accounts">
+										<?php foreach ( $bacs_accounts as $account ) : ?>
+											<?php
+											$account      = (array) $account;
+											$account_name = $account['account_name'] ?? '';
+											$bank_name    = $account['bank_name'] ?? '';
+											$iban         = $account['iban'] ?? '';
+											$account_num  = $account['account_number'] ?? '';
+											$sort_code    = $account['sort_code'] ?? '';
+											$bic          = $account['bic'] ?? '';
+											?>
+											<div class="order-received-bacs__card">
+												<?php if ( $account_name ) : ?>
+													<h4 class="order-received-bacs__card-title">
+														<span class="material-symbols" translate="no" aria-hidden="true">badge</span>
+														<?php echo esc_html( $account_name ); ?>
+													</h4>
+												<?php endif; ?>
+
+												<div class="order-received-bacs__fields">
+													<?php if ( $bank_name ) : ?>
+														<div class="order-received-bacs__field">
+															<span class="order-received-bacs__field-label"><?php esc_html_e( 'Банк:', 'steel-eshop' ); ?></span>
+															<span class="order-received-bacs__field-val"><?php echo esc_html( $bank_name ); ?></span>
+														</div>
+													<?php endif; ?>
+
+													<?php if ( $iban ) : ?>
+														<div class="order-received-bacs__field order-received-bacs__field--copyable">
+															<span class="order-received-bacs__field-label"><?php esc_html_e( 'IBAN:', 'steel-eshop' ); ?></span>
+															<span class="order-received-bacs__field-val order-received-bacs__field-val--code">
+																<code><?php echo esc_html( $iban ); ?></code>
+																<button type="button" class="order-received-bacs__copy-btn" data-copy="<?php echo esc_attr( preg_replace( '/\s+/', '', $iban ) ); ?>" aria-label="<?php esc_attr_e( 'Скопіювати IBAN', 'steel-eshop' ); ?>">
+																	<span class="material-symbols" translate="no" aria-hidden="true">content_copy</span>
+																	<span class="order-received-bacs__copy-text"><?php esc_html_e( 'Скопіювати', 'steel-eshop' ); ?></span>
+																</button>
+															</span>
+														</div>
+													<?php endif; ?>
+
+													<?php if ( $account_num && ! $iban ) : ?>
+														<div class="order-received-bacs__field order-received-bacs__field--copyable">
+															<span class="order-received-bacs__field-label"><?php esc_html_e( 'Рахунок:', 'steel-eshop' ); ?></span>
+															<span class="order-received-bacs__field-val order-received-bacs__field-val--code">
+																<code><?php echo esc_html( $account_num ); ?></code>
+																<button type="button" class="order-received-bacs__copy-btn" data-copy="<?php echo esc_attr( preg_replace( '/\s+/', '', $account_num ) ); ?>" aria-label="<?php esc_attr_e( 'Скопіювати рахунок', 'steel-eshop' ); ?>">
+																	<span class="material-symbols" translate="no" aria-hidden="true">content_copy</span>
+																	<span class="order-received-bacs__copy-text"><?php esc_html_e( 'Скопіювати', 'steel-eshop' ); ?></span>
+																</button>
+															</span>
+														</div>
+													<?php elseif ( $account_num && $iban && $account_num !== $iban ) : ?>
+														<div class="order-received-bacs__field">
+															<span class="order-received-bacs__field-label"><?php esc_html_e( 'Номер рахунку:', 'steel-eshop' ); ?></span>
+															<span class="order-received-bacs__field-val"><?php echo esc_html( $account_num ); ?></span>
+														</div>
+													<?php endif; ?>
+
+													<?php if ( $sort_code ) : ?>
+														<div class="order-received-bacs__field">
+															<span class="order-received-bacs__field-label"><?php esc_html_e( 'МФО / Код банку:', 'steel-eshop' ); ?></span>
+															<span class="order-received-bacs__field-val"><?php echo esc_html( $sort_code ); ?></span>
+														</div>
+													<?php endif; ?>
+
+													<?php if ( $bic ) : ?>
+														<div class="order-received-bacs__field">
+															<span class="order-received-bacs__field-label"><?php esc_html_e( 'BIC / SWIFT:', 'steel-eshop' ); ?></span>
+															<span class="order-received-bacs__field-val"><?php echo esc_html( $bic ); ?></span>
+														</div>
+													<?php endif; ?>
+												</div>
+											</div>
+										<?php endforeach; ?>
+									</div>
+								<?php endif; ?>
+
+								<div class="order-received-bacs__summary">
+									<div class="order-received-bacs__summary-row">
+										<span class="order-received-bacs__summary-label"><?php esc_html_e( 'Призначення платежу:', 'steel-eshop' ); ?></span>
+										<span class="order-received-bacs__summary-val">
+											<code><?php echo esc_html( sprintf( __( 'Оплата замовлення #%s', 'steel-eshop' ), $order->get_order_number() ) ); ?></code>
+											<button type="button" class="order-received-bacs__copy-btn" data-copy="<?php echo esc_attr( sprintf( __( 'Оплата замовлення #%s', 'steel-eshop' ), $order->get_order_number() ) ); ?>" aria-label="<?php esc_attr_e( 'Скопіювати призначення платежу', 'steel-eshop' ); ?>">
+												<span class="material-symbols" translate="no" aria-hidden="true">content_copy</span>
+												<span class="order-received-bacs__copy-text"><?php esc_html_e( 'Скопіювати', 'steel-eshop' ); ?></span>
+											</button>
+										</span>
+									</div>
+									<div class="order-received-bacs__summary-row">
+										<span class="order-received-bacs__summary-label"><?php esc_html_e( 'Сума до сплати:', 'steel-eshop' ); ?></span>
+										<span class="order-received-bacs__summary-val order-received-bacs__summary-val--highlight">
+											<?php echo wp_kses_post( $order->get_formatted_order_total() ); ?>
+										</span>
+									</div>
+								</div>
+
+								<script>
+									(function() {
+										document.addEventListener('click', function(e) {
+											var btn = e.target.closest('.order-received-bacs__copy-btn');
+											if (!btn) return;
+											e.preventDefault();
+											var text = btn.getAttribute('data-copy');
+											if (!text) return;
+
+											var copy = function(t) {
+												if (navigator.clipboard && window.isSecureContext) {
+													return navigator.clipboard.writeText(t);
+												}
+												var ta = document.createElement('textarea');
+												ta.value = t;
+												ta.style.position = 'fixed';
+												ta.style.left = '-9999px';
+												document.body.appendChild(ta);
+												ta.select();
+												try {
+													document.execCommand('copy');
+													ta.remove();
+													return Promise.resolve();
+												} catch (err) {
+													ta.remove();
+													return Promise.reject(err);
+												}
+											};
+
+											copy(text).then(function() {
+												var textSpan = btn.querySelector('.order-received-bacs__copy-text');
+												var iconSpan = btn.querySelector('.material-symbols');
+												var origText = textSpan ? textSpan.textContent : '';
+												var origIcon = iconSpan ? iconSpan.textContent : '';
+
+												btn.classList.add('is-copied');
+												if (textSpan) textSpan.textContent = '<?php echo esc_js( __( 'Скопійовано', 'steel-eshop' ) ); ?>';
+												if (iconSpan) iconSpan.textContent = 'check';
+
+												setTimeout(function() {
+													btn.classList.remove('is-copied');
+													if (textSpan) textSpan.textContent = origText;
+													if (iconSpan) iconSpan.textContent = origIcon;
+												}, 2000);
+											});
+										});
+									})();
+								</script>
+							</section>
+						<?php endif; ?>
+					<?php endif; ?>
+
 					<section class="order-received__block">
 						<h3 class="order-received__block-title">
 							<span class="material-symbols" translate="no" aria-hidden="true">shopping_bag</span>
@@ -268,7 +453,7 @@ defined( 'ABSPATH' ) || exit;
 		<?php endif; ?>
 
 		<?php
-		if ( 'cod' !== $order->get_payment_method() ) {
+		if ( ! in_array( $order->get_payment_method(), array( 'cod', 'bacs' ), true ) ) {
 			do_action( 'woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id() );
 		}
 		?>

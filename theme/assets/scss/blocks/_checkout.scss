@@ -668,6 +668,18 @@
 		line-height: 1.45;
 		color: var(--st-c-gray-2);
 
+		.woocommerce-privacy-policy-text {
+			margin-bottom: rem(12);
+
+			p {
+				margin: 0;
+			}
+
+			p + p {
+				margin-top: rem(6);
+			}
+		}
+
 		.woocommerce-form__label-for-checkbox {
 			display: flex;
 			align-items: flex-start;

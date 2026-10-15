@@ -225,14 +225,17 @@ function steel_checkout_order_review_fragments( $fragments ) {
 }
 
 /**
- * Remove default COD thankyou instructions paragraph (already shown cleanly in metrics card).
+ * Remove default COD and BACS thankyou output from bottom hook (rendered custom within the thankyou layout).
  */
-add_action( 'init', 'steel_remove_cod_thankyou_instructions', 20 );
-function steel_remove_cod_thankyou_instructions() {
+add_action( 'init', 'steel_remove_offline_thankyou_outputs', 20 );
+function steel_remove_offline_thankyou_outputs() {
 	if ( function_exists( 'WC' ) && WC()->payment_gateways() ) {
 		$gateways = WC()->payment_gateways()->payment_gateways();
 		if ( isset( $gateways['cod'] ) ) {
 			remove_action( 'woocommerce_thankyou_cod', array( $gateways['cod'], 'thankyou_page' ) );
+		}
+		if ( isset( $gateways['bacs'] ) ) {
+			remove_action( 'woocommerce_thankyou_bacs', array( $gateways['bacs'], 'thankyou_page' ) );
 		}
 	}
 }
@@ -328,5 +331,120 @@ function steel_filter_order_item_totals_np( $total_rows, $order ) {
 
 	return $total_rows;
 }
+
+/**
+ * Localize checkout privacy policy text.
+ *
+ * @param string $text Privacy policy text.
+ * @param string $type Context ('checkout' or 'registration').
+ * @return string
+ */
+add_filter( 'woocommerce_get_privacy_policy_text', 'steel_translate_privacy_policy_text', 20, 2 );
+function steel_translate_privacy_policy_text( $text, $type ) {
+	if ( 'checkout' === $type ) {
+		$privacy_page_id = function_exists( 'wc_privacy_policy_page_id' ) ? wc_privacy_policy_page_id() : (int) get_option( 'wp_page_for_privacy_policy' );
+		$privacy_link    = $privacy_page_id
+			? '<a href="' . esc_url( get_permalink( $privacy_page_id ) ) . '" class="woocommerce-privacy-policy-link" target="_blank">' . esc_html__( 'політиці конфіденційності', 'steel-eshop' ) . '</a>'
+			: esc_html__( 'політиці конфіденційності', 'steel-eshop' );
+
+		if ( empty( $text ) || false !== stripos( $text, 'personal data' ) || ! preg_match( '/[\x{0400}-\x{04FF}]/u', $text ) ) {
+			$text = sprintf(
+				/* translators: %s: privacy policy page link */
+				__( 'Ваші персональні дані будуть використовуватися для обробки вашого замовлення, підтримки вашого досвіду на цьому сайті та для інших цілей, описаних у нашій %s.', 'steel-eshop' ),
+				$privacy_link
+			);
+		} elseif ( false !== strpos( $text, '[privacy_policy]' ) ) {
+			$text = str_replace( '[privacy_policy]', $privacy_link, $text );
+		}
+	}
+
+	return $text;
+}
+
+/**
+ * Ensure the default option value for checkout privacy policy text is in Ukrainian.
+ *
+ * @param string $value Option value.
+ * @return string
+ */
+add_filter( 'option_woocommerce_checkout_privacy_policy_text', 'steel_filter_checkout_privacy_policy_text_option', 20 );
+add_filter( 'default_option_woocommerce_checkout_privacy_policy_text', 'steel_filter_checkout_privacy_policy_text_option', 20 );
+function steel_filter_checkout_privacy_policy_text_option( $value ) {
+	if ( empty( $value ) || false !== stripos( $value, 'personal data' ) || ! preg_match( '/[\x{0400}-\x{04FF}]/u', $value ) ) {
+		return __( 'Ваші персональні дані будуть використовуватися для обробки вашого замовлення, підтримки вашого досвіду на цьому сайті та для інших цілей, описаних у нашій [privacy_policy].', 'steel-eshop' );
+	}
+	return $value;
+}
+
+/**
+ * Localize checkout terms & conditions checkbox text if enabled.
+ *
+ * @param string $text Checkbox text.
+ * @return string
+ */
+add_filter( 'woocommerce_terms_and_conditions_checkbox_text', 'steel_translate_terms_checkbox_text', 20 );
+function steel_translate_terms_checkbox_text( $text ) {
+	if ( empty( $text ) || false !== stripos( $text, 'I have read and agree' ) || ! preg_match( '/[\x{0400}-\x{04FF}]/u', $text ) ) {
+		$terms_page_id = function_exists( 'wc_terms_and_conditions_page_id' ) ? wc_terms_and_conditions_page_id() : 0;
+		$terms_link    = $terms_page_id
+			? '<a href="' . esc_url( get_permalink( $terms_page_id ) ) . '" class="woocommerce-terms-and-conditions-link" target="_blank">' . esc_html__( 'правилами та умовами сайту', 'steel-eshop' ) . '</a>'
+			: esc_html__( 'правилами та умовами сайту', 'steel-eshop' );
+
+		$text = sprintf(
+			/* translators: %s: terms and conditions link */
+			__( 'Я прочитав(-ла) та погоджуюся з %s', 'steel-eshop' ),
+			$terms_link
+		);
+	} elseif ( false !== strpos( $text, '[terms]' ) ) {
+		$terms_page_id = function_exists( 'wc_terms_and_conditions_page_id' ) ? wc_terms_and_conditions_page_id() : 0;
+		$terms_link    = $terms_page_id
+			? '<a href="' . esc_url( get_permalink( $terms_page_id ) ) . '" class="woocommerce-terms-and-conditions-link" target="_blank">' . esc_html__( 'правилами та умовами сайту', 'steel-eshop' ) . '</a>'
+			: esc_html__( 'правилами та умовами сайту', 'steel-eshop' );
+
+		$text = str_replace( '[terms]', $terms_link, $text );
+	}
+
+	return $text;
+}
+
+/**
+ * Fallback gettext filter for privacy policy link text in case core helper is invoked directly.
+ */
+add_filter( 'gettext', 'steel_filter_wc_privacy_gettext', 10, 3 );
+function steel_filter_wc_privacy_gettext( $translation, $text, $domain ) {
+	if ( 'woocommerce' === $domain ) {
+		if ( 'privacy policy' === $text ) {
+			return __( 'політиці конфіденційності', 'steel-eshop' );
+		}
+		if ( 'terms and conditions' === $text ) {
+			return __( 'правилами та умовами сайту', 'steel-eshop' );
+		}
+		if ( 'required' === $text ) {
+			return __( 'обов’язково', 'steel-eshop' );
+		}
+	}
+	return $translation;
+}
+
+/**
+ * Fallback privacy policy page ID if not explicitly configured in WP/WC settings.
+ *
+ * @param int $page_id Configured privacy policy page ID.
+ * @return int
+ */
+add_filter( 'woocommerce_privacy_policy_page_id', 'steel_fallback_privacy_policy_page_id', 10, 1 );
+function steel_fallback_privacy_policy_page_id( $page_id ) {
+	if ( ! $page_id ) {
+		$candidates = array( 'privacy-policy', 'politika-konfidencijnosti', 'privacy' );
+		foreach ( $candidates as $slug ) {
+			$page = get_page_by_path( $slug );
+			if ( $page && 'publish' === $page->post_status ) {
+				return (int) $page->ID;
+			}
+		}
+	}
+	return $page_id;
+}
+
 
 
